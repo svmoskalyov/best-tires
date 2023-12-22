@@ -5,8 +5,8 @@ module.exports = {
   root: true,
   extends: [
     'plugin:vue/vue3-recommended',
-    'eslint:recommended',
-    '@vue/eslint-config-prettier/skip-formatting'
+    '@vue/prettier', // alias on '@vue/eslint-config-prettier/skip-formatting'
+    'eslint:recommended'
   ],
   parserOptions: {
     ecmaVersion: 'latest'
