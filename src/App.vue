@@ -1,19 +1,19 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import TheHeader from './components/TheHeader.vue'
-import TheFooter from './components/TheFooter.vue'
-import AppContainer from './components/shared/AppContainer.vue'
+import Header from './components/TheHeader.vue'
+import Footer from './components/TheFooter.vue'
+import Container from './components/shared/AppContainer.vue'
 </script>
 
 <template>
   <div class="app">
-    <TheHeader />
+    <Header />
     <main class="main">
-      <AppContainer>
+      <Container>
         <RouterView />
-      </AppContainer>
+      </Container>
     </main>
-    <TheFooter />
+    <Footer />
   </div>
 </template>
 
