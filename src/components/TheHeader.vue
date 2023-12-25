@@ -1,5 +1,6 @@
 <script setup>
 import Logo from './TheLogo.vue'
+import NavBar from './TheNavBar.vue'
 import Container from './shared/AppContainer.vue'
 </script>
 
@@ -8,7 +9,8 @@ import Container from './shared/AppContainer.vue'
     <Container>
       <div class="header__content">
         <Logo />
-        <div class="header__nav">Navigation</div>
+        <NavBar />
+
         <div class="header__profile">
           <div class="header__favorites-count">FavoritesCount</div>
           <div class="header__cart">Cart</div>
