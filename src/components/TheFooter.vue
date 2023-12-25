@@ -1,15 +1,15 @@
 <script setup>
-import AppContainer from '@/components/shared/AppContainer.vue'
+import Container from '@/components/shared/AppContainer.vue'
 </script>
 
 <template>
   <footer class="footer">
-    <AppContainer>
+    <Container>
       <div class="footer__content">
         <div class="footer__copyright">&copy; 2024 [name]</div>
         <div class="footer__link">in</div>
       </div>
-    </AppContainer>
+    </Container>
   </footer>
 </template>
 
