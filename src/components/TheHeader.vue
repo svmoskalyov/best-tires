@@ -1,5 +1,5 @@
 <script setup>
-import Logo from './TheLogo.vue';
+import Logo from './TheLogo.vue'
 import Container from './shared/AppContainer.vue'
 </script>
 
