@@ -22,6 +22,9 @@ import { ROUTES_PATHS } from '@/constants/router'
 .nav__link
         padding: 22px 6px
 
+        &:hover
+          color: $accent
+
 .router-link-active
     color: $accent
 </style>
