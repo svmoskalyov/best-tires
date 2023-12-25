@@ -1,12 +1,13 @@
 <script setup>
-import AppContainer from './shared/AppContainer.vue'
+import Logo from './TheLogo.vue';
+import Container from './shared/AppContainer.vue'
 </script>
 
 <template>
   <header class="header">
-    <AppContainer>
+    <Container>
       <div class="header__content">
-        <div class="header__logo">Logo</div>
+        <Logo />
         <div class="header__nav">Navigation</div>
         <div class="header__profile">
           <div class="header__favorites-count">FavoritesCount</div>
@@ -14,7 +15,7 @@ import AppContainer from './shared/AppContainer.vue'
           <div class="header__user">User</div>
         </div>
       </div>
-    </AppContainer>
+    </Container>
   </header>
 </template>
 
