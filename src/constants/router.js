@@ -1,3 +1,5 @@
 export const ROUTES_PATHS = {
-  HOME: '/'
+  HOME: '/',
+  TIRES: '/tires',
+  NOTFOUND: '/:pathMatch(.*)'
 }
