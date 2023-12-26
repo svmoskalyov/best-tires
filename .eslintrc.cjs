@@ -10,5 +10,9 @@ module.exports = {
   ],
   parserOptions: {
     ecmaVersion: 'latest'
+  },
+  rules: {
+    'no-unused-vars': 'off',
+    'vue/require-default-prop': 'off'
   }
 }
