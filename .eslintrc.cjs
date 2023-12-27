@@ -13,6 +13,7 @@ module.exports = {
   },
   rules: {
     'no-unused-vars': 'off',
-    'vue/require-default-prop': 'off'
+    'vue/require-default-prop': 'off',
+    'vue/component-definition-name-casing': ['PascalCase' | 'kebab-case']
   }
 }
