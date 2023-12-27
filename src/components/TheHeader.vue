@@ -1,6 +1,7 @@
 <script setup>
 import Logo from './TheLogo.vue'
 import NavBar from './TheNavBar.vue'
+import ThePerson from './ThePerson.vue'
 import Container from './shared/AppContainer.vue'
 </script>
 
@@ -10,12 +11,7 @@ import Container from './shared/AppContainer.vue'
       <div class="header__content">
         <Logo />
         <NavBar />
-
-        <div class="header__profile">
-          <div class="header__favorites-count">FavoritesCount</div>
-          <div class="header__cart">Cart</div>
-          <div class="header__user">User</div>
-        </div>
+        <ThePerson class="header__profile" />
       </div>
     </Container>
   </header>
