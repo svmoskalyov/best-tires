@@ -13,12 +13,19 @@ const props = defineProps({
     default: false
   }
 })
+
+const emit = defineEmits(['click'])
+
+const clickOnButton = () => {
+  emit('click')
+}
 </script>
 
 <template>
   <button
     :class="['btn', { btn__icon: icon }]"
     :disabled="disabled"
+    @click="clickOnButton"
   >
     <span v-if="icon"><slot /></span>
     <span v-else>{{ label }}</span>
@@ -33,7 +40,7 @@ const props = defineProps({
     font-size: 16px
     background: $background
     border: none
-    border: 2px solid $text
+    border: 2px solid $accent
     border-radius: 12px
     transition: .2s
 
