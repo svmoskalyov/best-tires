@@ -56,4 +56,5 @@ const clickOnButton = () => {
         height: 40px
         border: none
         border-radius: 50%
+        background: transparent
 </style>
