@@ -2,9 +2,13 @@ import './assets/styles/main.sass'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import { initializeApp } from 'firebase/app'
+import firebaseConfig from './services/firebaseConfig'
 
 import App from './App.vue'
 import router from './router'
+
+initializeApp(firebaseConfig)
 
 const app = createApp(App)
 
