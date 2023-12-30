@@ -11,12 +11,12 @@ function goTires() {
 </script>
 
 <template>
-  <div class="home-page">
-    <h1 class="home-page__title">The best tires</h1>
-    <div class="home-page__wrapper">
-      <span class="home-page__text">choose from us</span>
+  <div class="home">
+    <h1 class="home__title">The best tires</h1>
+    <div class="home__wrapper">
+      <span class="home__text">choose from us</span>
       <AppButton
-        class="home-page__btn"
+        class="home__btn"
         label="Start"
         @click="goTires"
       />
@@ -26,7 +26,7 @@ function goTires() {
 
 <style lang="sass" scoped>
 @import '../assets/styles/main'
-.home-page
+.home
   min-height: 100%
   padding: 20px
   outline: 1px solid blue

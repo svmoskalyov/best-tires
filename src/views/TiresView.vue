@@ -1,12 +1,12 @@
 <script setup></script>
 
 <template>
-  <div class="tires-page">Tires Page</div>
+  <div class="tires">This is an tires page</div>
 </template>
 
 <style lang="sass" scoped>
 
-.tires-page
+.tires
   min-height: 100%
   outline: 1px solid blue
 </style>

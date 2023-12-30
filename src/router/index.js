@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { ROUTES_PATHS } from '@/constants'
 
-const Home = () => import('../pages/PageHome.vue')
-const Tires = () => import('../pages/PageTires.vue')
+const HomeView = () => import('../views/HomeView.vue')
+const TiresView = () => import('../views/TiresView.vue')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,17 +10,17 @@ const router = createRouter({
     {
       path: ROUTES_PATHS.HOME,
       name: ROUTES_PATHS.HOME,
-      component: Home
+      component: HomeView
     },
     {
       path: ROUTES_PATHS.TIRES,
       name: ROUTES_PATHS.TIRES,
-      component: Tires
+      component: TiresView
     },
     {
       path: ROUTES_PATHS.NOTFOUND,
       name: ROUTES_PATHS.NOTFOUND,
-      component: Home
+      component: HomeView
     }
   ]
 })
