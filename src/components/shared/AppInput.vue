@@ -1,24 +1,28 @@
 <script setup>
 const props = defineProps({
-  value: {
+  type: {
     type: String,
-    default: ''
+    default: 'text'
   },
   name: {
     type: String,
     required: true
   },
-  type: {
-    type: String,
-    default: 'text'
-  },
   placeholder: {
     type: String,
     required: true
   },
+  value: {
+    type: String,
+    default: ''
+  },
   label: {
     type: String,
     required: true
+  },
+  autocomplete: {
+    type: String,
+    default: 'on'
   },
   width: {
     type: String,
@@ -49,6 +53,7 @@ const updateValue = e => {
       :name="name"
       :placeholder="placeholder"
       :value="value"
+      :autocomplete="autocomplete"
       @input="updateValue"
     />
     <label
