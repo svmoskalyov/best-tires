@@ -18,16 +18,29 @@ const passwordField = ref('')
 const confirmPasswordField = ref('')
 
 const rules = computed(() => ({
+  // nameField: {
+  //   required: helpers.withMessage('This field cannot be empty', required),
+  //   minLength: helpers.withMessage(`Minimum length: 3 characters`, minLength(3))
+  // },
   nameField: {
-    required,
-    minLength: helpers.withMessage(`Minimum length: 3 characters`, minLength(3))
+    minLength: helpers.withMessage(
+      ({ $pending, $invalid, $params, $model }) =>
+        `This field has a value of '${$model}' but must have a min length of ${
+          $params.min
+        } so it is ${$invalid ? 'invalid' : 'valid'}`,
+      minLength(4)
+    )
   },
   emailField: {
-    required,
+    required: helpers.withMessage('This field cannot be empty', required),
     email: helpers.withMessage('Not correct email', email)
   },
+  passwordField: {
+    required: helpers.withMessage('This field cannot be empty', required),
+    password: helpers.withMessage('Not correct password', minLength(3))
+  },
   confirmPasswordField: {
-    required,
+    required: helpers.withMessage('This field cannot be empty', required),
     sameAsPassword: helpers.withMessage(
       `Passwords do not match`,
       sameAs(passwordField.value)
@@ -38,6 +51,7 @@ const rules = computed(() => ({
 const v$ = useVuelidate(rules, {
   nameField,
   emailField,
+  passwordField,
   confirmPasswordField
 })
 
@@ -50,6 +64,8 @@ const submitForm = () => {
     email: emailField.value,
     password: passwordField.value
   })
+
+  nameField.value = ''
 }
 </script>
 
@@ -64,6 +80,7 @@ const submitForm = () => {
         name="name"
         placeholder="Input your name"
         :error="v$.nameField.$errors"
+        autocomplete="off"
       />
 
       <AppInput
@@ -72,13 +89,15 @@ const submitForm = () => {
         name="email"
         placeholder="Input your email"
         :error="v$.emailField.$errors"
+        autocomplete="off"
       />
 
       <AppInput
-        v-model:value="passwordField"
+        v-model:value="v$.passwordField.$model"
         label="Password"
         name="password"
         placeholder="Please input password"
+        :error="v$.passwordField.$errors"
         type="password"
       />
 
