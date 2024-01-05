@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, reactive } from 'vue'
 import useVuelidate from '@vuelidate/core'
 import {
   required,
@@ -12,10 +12,35 @@ import {
 import AppInput from './shared/AppInput.vue'
 import AppButton from './shared/AppButton.vue'
 
-const nameField = ref('')
-const emailField = ref('')
-const passwordField = ref('')
-const confirmPasswordField = ref('')
+// const initialState = {
+//   nameField: '',
+//   emailField: '',
+//   passwordField: '',
+//   confirmPasswordField: ''
+// }
+
+// const form = reactive({ ...initialState })
+
+// function resetForm() {
+//   Object.assign(form, initialState)
+// }
+
+const form = ref({
+  nameField: '',
+  emailField: '',
+  passwordField: '',
+  confirmPasswordField: ''
+})
+
+function resetForm() {
+  // form.value = { ...form }
+  form.value = form
+}
+
+// const nameField = ref('')
+// const emailField = ref('')
+// const passwordField = ref('')
+// const confirmPasswordField = ref('')
 
 const rules = computed(() => ({
   // nameField: {
@@ -43,44 +68,55 @@ const rules = computed(() => ({
     required: helpers.withMessage('This field cannot be empty', required),
     sameAsPassword: helpers.withMessage(
       `Passwords do not match`,
-      sameAs(passwordField.value)
+      sameAs(form.value.passwordField)
     )
   }
 }))
 
-const v$ = useVuelidate(rules, {
-  nameField,
-  emailField,
-  passwordField,
-  confirmPasswordField
-})
+// const v$ = useVuelidate(rules, {
+//   nameField,
+//   emailField,
+//   passwordField,
+//   confirmPasswordField
+// })
+
+const v$ = useVuelidate(rules, form)
 
 const submitForm = () => {
   v$.value.$touch()
   if (v$.value.$error) return
 
+  // console.log({
+  //   name: nameField.value,
+  //   email: emailField.value,
+  //   password: passwordField.value
+  // })
+
   console.log({
-    name: nameField.value,
-    email: emailField.value,
-    password: passwordField.value
+    name: form.value.nameField,
+    email: form.value.emailField,
+    password: form.value.passwordField
   })
 
-  nameField.value = ''
+  v$.value.$reset()
+  resetForm()
 }
 </script>
 
 <template>
-  <div>
+  <div class="form-wrapper">
     <h2 class="title-form">SignUp</h2>
 
-    <form @submit.prevent="submitForm">
+    <form
+      class="form"
+      @submit.prevent="submitForm"
+    >
       <AppInput
         v-model:value="v$.nameField.$model"
         label="Name"
         name="name"
         placeholder="Input your name"
         :error="v$.nameField.$errors"
-        autocomplete="off"
       />
 
       <AppInput
@@ -89,7 +125,6 @@ const submitForm = () => {
         name="email"
         placeholder="Input your email"
         :error="v$.emailField.$errors"
-        autocomplete="off"
       />
 
       <AppInput
