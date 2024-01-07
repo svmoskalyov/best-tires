@@ -1,29 +1,10 @@
 <script setup>
-import { ref, computed, reactive } from 'vue'
+import { ref, computed } from 'vue'
 import useVuelidate from '@vuelidate/core'
-import {
-  required,
-  helpers,
-  minLength,
-  email,
-  sameAs
-} from '@vuelidate/validators'
+import { required, helpers, minLength, sameAs } from '@vuelidate/validators'
 
 import AppInput from './shared/AppInput.vue'
 import AppButton from './shared/AppButton.vue'
-
-// const initialState = {
-//   nameField: '',
-//   emailField: '',
-//   passwordField: '',
-//   confirmPasswordField: ''
-// }
-
-// const form = reactive({ ...initialState })
-
-// function resetForm() {
-//   Object.assign(form, initialState)
-// }
 
 const form = ref({
   nameField: '',
@@ -33,14 +14,8 @@ const form = ref({
 })
 
 function resetForm() {
-  // form.value = { ...form }
   form.value = form
 }
-
-// const nameField = ref('')
-// const emailField = ref('')
-// const passwordField = ref('')
-// const confirmPasswordField = ref('')
 
 const rules = computed(() => ({
   nameField: {
@@ -76,24 +51,11 @@ const rules = computed(() => ({
   }
 }))
 
-// const v$ = useVuelidate(rules, {
-//   nameField,
-//   emailField,
-//   passwordField,
-//   confirmPasswordField
-// })
-
 const v$ = useVuelidate(rules, form)
 
 const submitForm = () => {
   v$.value.$touch()
   if (v$.value.$error) return
-
-  // console.log({
-  //   name: nameField.value,
-  //   email: emailField.value,
-  //   password: passwordField.value
-  // })
 
   console.log({
     name: form.value.nameField,
