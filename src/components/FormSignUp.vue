@@ -43,26 +43,29 @@ function resetForm() {
 // const confirmPasswordField = ref('')
 
 const rules = computed(() => ({
-  // nameField: {
-  //   required: helpers.withMessage('This field cannot be empty', required),
-  //   minLength: helpers.withMessage(`Minimum length: 3 characters`, minLength(3))
-  // },
   nameField: {
+    required: helpers.withMessage('This field cannot be empty', required),
     minLength: helpers.withMessage(
-      ({ $pending, $invalid, $params, $model }) =>
+      ({ $invalid, $params, $model }) =>
         `This field has a value of '${$model}' but must have a min length of ${
           $params.min
         } so it is ${$invalid ? 'invalid' : 'valid'}`,
-      minLength(4)
+      minLength(3)
     )
   },
   emailField: {
     required: helpers.withMessage('This field cannot be empty', required),
-    email: helpers.withMessage('Not correct email', email)
+    email: helpers.withMessage(
+      'Email address must be a valid address',
+      helpers.regex(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)
+    )
   },
   passwordField: {
     required: helpers.withMessage('This field cannot be empty', required),
-    password: helpers.withMessage('Not correct password', minLength(3))
+    password: helpers.withMessage(
+      'Password must contain at least 1 Uppercase, 1 Lowercase, 1 number, 1 special character and min 8 characters max 22',
+      helpers.regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*)(?=.*[#$^+=!*()@%&]).{8,22}$/)
+    )
   },
   confirmPasswordField: {
     required: helpers.withMessage('This field cannot be empty', required),
