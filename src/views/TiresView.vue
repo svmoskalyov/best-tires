@@ -1,7 +1,9 @@
 <script setup></script>
 
 <template>
-  <div class="tires">This is an tires page</div>
+  <div class="tires">
+    <h2>This is an tires page</h2>
+  </div>
 </template>
 
 <style lang="sass" scoped>
