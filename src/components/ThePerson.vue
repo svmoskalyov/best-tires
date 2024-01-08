@@ -1,5 +1,9 @@
 <script setup>
 import AppButton from './shared/AppButton.vue'
+import AppModal from './shared/AppModal.vue'
+import { ref } from 'vue'
+
+const showModal = ref(false)
 
 const favoritesCount = false
 const cartCount = false
@@ -50,6 +54,7 @@ const auth = false
       <AppButton
         v-if="!auth"
         icon
+        @click="showModal = true"
       >
         <font-awesome-icon :icon="['fas', 'arrow-right-to-bracket']" />
       </AppButton>
@@ -61,11 +66,25 @@ const auth = false
       </AppButton>
     </div>
   </div>
+
+  <Teleport to="body">
+    <AppModal
+      :show="showModal"
+      @close="showModal = false"
+    >
+      <template #header>
+        <h2>SignUp</h2>
+      </template>
+    </AppModal>
+  </Teleport>
 </template>
 
 <style lang="sass" scoped>
 @import '../assets/styles/main'
 
+.person
+  display: flex
+  gap: 12px
 .favorites
   position: relative
 
