@@ -43,6 +43,7 @@ const clickOnButton = () => {
     border: 2px solid $accent
     border-radius: 12px
     transition: .2s
+    outline: none
 
     &:enabled:hover
         background: $accent
