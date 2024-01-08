@@ -1,6 +1,7 @@
 <script setup>
 import AppButton from './shared/AppButton.vue'
 import AppModal from './shared/AppModal.vue'
+import FormSignUp from '@/components/FormSignUp.vue'
 import { ref } from 'vue'
 
 const showModal = ref(false)
@@ -72,9 +73,7 @@ const auth = false
       :show="showModal"
       @close="showModal = false"
     >
-      <template #header>
-        <h2>SignUp</h2>
-      </template>
+      <FormSignUp @submit="showModal = false" />
     </AppModal>
   </Teleport>
 </template>
