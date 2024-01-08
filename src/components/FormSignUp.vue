@@ -17,6 +17,12 @@ function resetForm() {
   form.value = form
 }
 
+const emit = defineEmits(['submit'])
+
+function closeModal() {
+  emit('submit')
+}
+
 const rules = computed(() => ({
   nameField: {
     required: helpers.withMessage('This field cannot be empty', required),
@@ -65,23 +71,25 @@ const submitForm = () => {
 
   v$.value.$reset()
   resetForm()
+  closeModal()
 }
 </script>
 
 <template>
   <div class="form-wrapper">
-    <h2 class="title-form">SignUp</h2>
-
     <form
       class="form"
       @submit.prevent="submitForm"
     >
+      <h2 class="form__title">SignUp</h2>
+
       <AppInput
         v-model:value="v$.nameField.$model"
         label="Name"
         name="name"
         placeholder="Input your name"
         :error="v$.nameField.$errors"
+        width=""
       />
 
       <AppInput
@@ -90,6 +98,7 @@ const submitForm = () => {
         name="email"
         placeholder="Input your email"
         :error="v$.emailField.$errors"
+        width=""
       />
 
       <AppInput
@@ -99,6 +108,7 @@ const submitForm = () => {
         placeholder="Please input password"
         :error="v$.passwordField.$errors"
         type="password"
+        width=""
       />
 
       <AppInput
@@ -108,14 +118,28 @@ const submitForm = () => {
         placeholder="Please confirm password"
         :error="v$.confirmPasswordField.$errors"
         type="password"
+        width=""
       />
 
-      <AppButton label="SignUp" />
+      <AppButton
+        label="SignUp"
+        class="form__btn"
+      />
     </form>
   </div>
 </template>
 
 <style lang="sass" scoped>
-.title-form
-  margin: 20px auto
+@import '../assets/styles/main'
+.form
+  &__title
+    margin-bottom: 30px
+    color: $accent
+    font-size: 18px
+    font-weight: 700
+    text-align: center
+
+  &__btn
+    margin-top: 20px
+    width: 100%
 </style>
