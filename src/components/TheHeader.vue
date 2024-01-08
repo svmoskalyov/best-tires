@@ -11,7 +11,7 @@ import Container from './shared/AppContainer.vue'
       <div class="header__content">
         <Logo />
         <NavBar />
-        <ThePerson class="header__profile" />
+        <ThePerson />
       </div>
     </Container>
   </header>
@@ -27,8 +27,4 @@ import Container from './shared/AppContainer.vue'
     justify-content: space-between
     align-items: center
     height: 60px
-
-  &__profile
-    display: flex
-    gap: 12px
 </style>
