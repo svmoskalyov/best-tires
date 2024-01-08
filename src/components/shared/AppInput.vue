@@ -103,6 +103,7 @@ const updateValue = e => {
         z-index: 1
         // background: $background
         background: inherit
+        outline: none
 
         &:focus
             & + .input-label
