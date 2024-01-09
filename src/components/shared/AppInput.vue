@@ -62,6 +62,10 @@ const updateValue = e => {
     >
       {{ label }}
     </label>
+    <div class="form-eye">
+      <slot />
+    </div>
+
     <TransitionGroup>
       <div
         v-for="element of error"
@@ -90,6 +94,11 @@ const updateValue = e => {
         font-size: 13px
         color: $text
         padding: 5px
+    &-eye
+      position: absolute
+      top: 0
+      right: 0
+      z-index: 2
 
 .input
     &-text
@@ -101,7 +110,6 @@ const updateValue = e => {
         width: 100%
         position: relative
         z-index: 1
-        // background: $background
         background: inherit
         outline: none
 
