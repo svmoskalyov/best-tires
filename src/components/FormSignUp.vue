@@ -10,12 +10,10 @@ const form = ref({
   nameField: '',
   emailField: '',
   passwordField: '',
-  confirmPasswordField: ''
+  confirmPasswordField: '',
+  passwordVisible: false,
+  confirmPasswordVisible: false
 })
-
-function resetForm() {
-  form.value = form
-}
 
 const emit = defineEmits(['submit'])
 
@@ -70,7 +68,7 @@ const submitForm = () => {
   })
 
   v$.value.$reset()
-  resetForm()
+  form.value = form
   closeModal()
 }
 </script>
@@ -107,9 +105,24 @@ const submitForm = () => {
         name="password"
         placeholder="Please input password"
         :error="v$.passwordField.$errors"
-        type="password"
         width=""
-      />
+        :type="form.passwordVisible ? '' : 'password'"
+      >
+        <AppButton
+          icon
+          type="button"
+          @click="form.passwordVisible = !form.passwordVisible"
+        >
+          <font-awesome-icon
+            v-if="form.passwordVisible"
+            :icon="['fas', 'eye']"
+          />
+          <font-awesome-icon
+            v-else
+            :icon="['fas', 'eye-slash']"
+          />
+        </AppButton>
+      </AppInput>
 
       <AppInput
         v-model:value="v$.confirmPasswordField.$model"
@@ -117,9 +130,24 @@ const submitForm = () => {
         name="confirm"
         placeholder="Please confirm password"
         :error="v$.confirmPasswordField.$errors"
-        type="password"
         width=""
-      />
+        :type="form.confirmPasswordVisible ? '' : 'password'"
+      >
+        <AppButton
+          icon
+          type="button"
+          @click="form.confirmPasswordVisible = !form.confirmPasswordVisible"
+        >
+          <font-awesome-icon
+            v-if="form.confirmPasswordVisible"
+            :icon="['fas', 'eye']"
+          />
+          <font-awesome-icon
+            v-else
+            :icon="['fas', 'eye-slash']"
+          />
+        </AppButton>
+      </AppInput>
 
       <AppButton
         label="SignUp"
