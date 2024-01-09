@@ -20,15 +20,15 @@ const auth = false
       >
         <font-awesome-icon
           :icon="['fas', 'heart']"
-          :class="[{ favorites__icon: favoritesCount }]"
+          :class="{ 'favorites-icon': favoritesCount }"
         />
       </AppButton>
 
       <span
         :class="[
           'count',
-          'favorites__count',
-          { count_disabled: !favoritesCount }
+          'favorites-count',
+          { 'count-disabled': !favoritesCount }
         ]"
       >
         0
@@ -42,11 +42,11 @@ const auth = false
       >
         <font-awesome-icon
           :icon="['fas', 'cart-shopping']"
-          :class="[{ cart__icon: cartCount }]"
+          :class="{ 'cart-icon': cartCount }"
         />
       </AppButton>
 
-      <span :class="['count', 'cart__count', { count_disabled: !cartCount }]">
+      <span :class="['count', 'cart-count', { 'count-disabled': !cartCount }]">
         0
       </span>
     </div>
@@ -87,14 +87,14 @@ const auth = false
 .favorites
   position: relative
 
-  &__icon
-    color: $heart
+.favorites-icon
+  color: $heart
 
 .cart
   position: relative
 
-  &__icon
-    color: $cart
+.cart-icon
+  color: $cart
 
 .count
   position: absolute
@@ -110,6 +110,6 @@ const auth = false
   border-radius: 50%
   cursor: default
 
-  &_disabled
-    opacity: .6
+.count-disabled
+  opacity: .6
 </style>

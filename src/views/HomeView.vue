@@ -12,11 +12,11 @@ function goTires() {
 
 <template>
   <div class="home">
-    <h1 class="home__title">The best tires</h1>
-    <div class="home__wrapper">
-      <span class="home__text">choose from us</span>
+    <h1 class="home-title">The best tires</h1>
+    <div class="home-wrapper">
+      <span class="home-text">choose from us</span>
       <AppButton
-        class="home__btn"
+        class="home-btn"
         label="Start"
         @click="goTires"
       />
@@ -31,22 +31,22 @@ function goTires() {
   padding: 20px
   outline: 1px solid blue
 
-  &__title
-    margin-top: 60px
-    font-size: 74px
-    font-weight: 700
-    color: $accent
+.home-title
+  margin-top: 60px
+  font-size: 74px
+  font-weight: 700
+  color: $accent
 
-  &__wrapper
-    display: flex
-    flex-wrap: wrap
-    align-items: center
-    gap: 20px
+.home-wrapper
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  gap: 20px
 
-  &__text
-    font-size: 44px
-    line-height: 1.8
+.home-text
+  font-size: 44px
+  line-height: 1.8
 
-  &__btn
-    width: 140px
+.home-btn
+  width: 140px
 </style>

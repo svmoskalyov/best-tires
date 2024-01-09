@@ -6,12 +6,12 @@ import AppButton from './shared/AppButton.vue'
 <template>
   <footer class="footer">
     <Container>
-      <div class="footer__content">
-        <div class="footer__copyright">&copy; 2024 Serhii Moskalov</div>
-        <div class="footer__link">
+      <div class="footer-content">
+        <div class="footer-copyright">&copy; 2024 Serhii Moskalov</div>
+        <div class="footer-link">
           <a
             href="https://www.linkedin.com/in/serhii-moskalov"
-            target="_blank"
+            target="blank"
           >
             <AppButton icon>
               <font-awesome-icon :icon="['fab', 'linkedin']" />
@@ -29,9 +29,9 @@ import AppButton from './shared/AppButton.vue'
   grid-area: footer
   outline: 1px solid tomato
 
-  &__content
-    display: flex
-    justify-content: space-between
-    align-items: center
-    height: 48px
+.footer-content
+  display: flex
+  justify-content: space-between
+  align-items: center
+  height: 48px
 </style>

@@ -23,7 +23,7 @@ const clickOnButton = () => {
 
 <template>
   <button
-    :class="['btn', { btn__icon: icon }]"
+    :class="['btn', { 'btn-icon': icon }]"
     :disabled="disabled"
     @click="clickOnButton"
   >
@@ -35,27 +35,27 @@ const clickOnButton = () => {
 <style lang="sass" scoped>
 @import '../../assets/styles/main'
 .btn
-    padding: 0 20px
-    height: 40px
-    font-size: 16px
-    background: $background
-    border: none
-    border: 2px solid $accent
-    border-radius: 12px
-    transition: .2s
-    outline: none
+  padding: 0 20px
+  height: 40px
+  font-size: 16px
+  background: $background
+  border: none
+  border: 2px solid $accent
+  border-radius: 12px
+  transition: .2s
+  outline: none
 
-    &:enabled:hover
-        background: $accent
+.btn:enabled:hover
+  background: $accent
 
-    &:disabled
-        opacity: .6
+.btn:disabled
+  opacity: .6
 
-    &__icon
-        padding: 0
-        width: 40px
-        height: 40px
-        border: none
-        border-radius: 50%
-        background: transparent
+.btn-icon
+  padding: 0
+  width: 40px
+  height: 40px
+  border: none
+  border-radius: 50%
+  background: transparent
 </style>

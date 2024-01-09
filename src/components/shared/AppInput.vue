@@ -72,7 +72,7 @@ const updateValue = e => {
         :key="element.$uid"
         class="form-error"
       >
-        <div class="form-error__message">
+        <div class="form-error-message">
           {{ element.$message }}
         </div>
       </div>
@@ -82,59 +82,59 @@ const updateValue = e => {
 
 <style lang="sass" scoped>
 @import '../../assets/styles/main'
-.form
-    &-input
-        margin-bottom: 30px
-        position: relative
 
-    &-error
-        background: $error
-        margin-top: 4px
-        border-radius: 7px
-        font-size: 13px
-        color: $text
-        padding: 5px
-    &-eye
-      position: absolute
-      top: 0
-      right: 0
-      z-index: 2
+.form-input
+  margin-bottom: 30px
+  position: relative
 
-.input
-    &-text
-        border: 1px solid $accent
-        padding: 0 10px
-        height: 40px
-        border-radius: 7px
-        font-size: 15px
-        width: 100%
-        position: relative
-        z-index: 1
-        background: inherit
-        outline: none
+.form-error
+  background: $error
+  margin-top: 4px
+  border-radius: 7px
+  font-size: 13px
+  color: $text
+  padding: 5px
 
-        &:focus
-            & + .input-label
-                z-index: 1
-                opacity: 1
-                top: -20px
+.form-eye
+  position: absolute
+  top: 0
+  right: 0
+  z-index: 2
 
-        &:not(:placeholder-shown)
-            & + .input-label
-                z-index: 1
-                opacity: 1
-                top: -20px
+.input-text
+  border: 1px solid $accent
+  padding: 0 10px
+  height: 40px
+  border-radius: 7px
+  font-size: 15px
+  width: 100%
+  position: relative
+  z-index: 1
+  background: inherit
+  outline: none
 
-    &-label
-        font-weight: bold
-        display: block
-        position: absolute
-        top: 20px
-        opacity: 0
-        z-index: -1
-        transition: .3s
-        font-size: 13px
-        color: $accent
+.input-text:focus
+  & + .input-label
+    z-index: 1
+    opacity: 1
+    top: -20px
+
+.input-text:not(:placeholder-shown)
+  & + .input-label
+    z-index: 1
+    opacity: 1
+    top: -20px
+
+.input-label
+  font-weight: bold
+  display: block
+  position: absolute
+  top: 20px
+  opacity: 0
+  z-index: -1
+  transition: .3s
+  font-size: 13px
+  color: $accent
 
 .v-enter-active,
 .v-leave-active

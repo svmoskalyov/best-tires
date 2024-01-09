@@ -79,7 +79,7 @@ const submitForm = () => {
       class="form"
       @submit.prevent="submitForm"
     >
-      <h2 class="form__title">SignUp</h2>
+      <h2 class="form-title">SignUp</h2>
 
       <AppInput
         v-model:value="v$.nameField.$model"
@@ -151,7 +151,7 @@ const submitForm = () => {
 
       <AppButton
         label="SignUp"
-        class="form__btn"
+        class="form-btn"
       />
     </form>
   </div>
@@ -159,15 +159,14 @@ const submitForm = () => {
 
 <style lang="sass" scoped>
 @import '../assets/styles/main'
-.form
-  &__title
-    margin-bottom: 30px
-    color: $accent
-    font-size: 18px
-    font-weight: 700
-    text-align: center
+.form-title
+  margin-bottom: 30px
+  color: $accent
+  font-size: 18px
+  font-weight: 700
+  text-align: center
 
-  &__btn
-    margin-top: 20px
-    width: 100%
+.form-btn
+  margin-top: 20px
+  width: 100%
 </style>

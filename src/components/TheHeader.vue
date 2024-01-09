@@ -8,7 +8,7 @@ import Container from './shared/AppContainer.vue'
 <template>
   <header class="header">
     <Container>
-      <div class="header__content">
+      <div class="header-content">
         <Logo />
         <NavBar />
         <ThePerson />
@@ -22,9 +22,9 @@ import Container from './shared/AppContainer.vue'
   grid-area: header
   outline: 1px solid green
 
-  &__content
-    display: flex
-    justify-content: space-between
-    align-items: center
-    height: 60px
+.header-content
+  display: flex
+  justify-content: space-between
+  align-items: center
+  height: 60px
 </style>

@@ -5,12 +5,12 @@ import { ROUTES_PATHS } from '@/constants/router'
 <template>
   <nav class="nav">
     <RouterLink
-      class="nav__link"
+      class="nav-link"
       :to="ROUTES_PATHS.HOME"
       >Home</RouterLink
     >
     <RouterLink
-      class="nav__link"
+      class="nav-link"
       :to="ROUTES_PATHS.TIRES"
       >Tires</RouterLink
     >
@@ -19,12 +19,12 @@ import { ROUTES_PATHS } from '@/constants/router'
 
 <style lang="sass" scoped>
 @import '../assets/styles/main'
-.nav__link
-        padding: 22px 6px
+.nav-link
+  padding: 22px 6px
 
-        &:hover
-          color: $accent
+.nav-link:hover
+  color: $accent
 
 .router-link-active
-    color: $accent
+  color: $accent
 </style>
