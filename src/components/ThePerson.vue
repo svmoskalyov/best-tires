@@ -1,14 +1,18 @@
 <script setup>
+import { ref } from 'vue'
 import AppButton from './shared/AppButton.vue'
 import AppModal from './shared/AppModal.vue'
-import FormSignUp from '@/components/FormSignUp.vue'
-import { ref } from 'vue'
+import FormSignIn from './FormSignIn.vue'
 
 const showModal = ref(false)
 
 const favoritesCount = false
 const cartCount = false
 const auth = false
+
+function signOut() {
+  console.log('SignOut')
+}
 </script>
 
 <template>
@@ -62,6 +66,7 @@ const auth = false
       <AppButton
         v-else
         icon
+        @click="signOut"
       >
         <font-awesome-icon :icon="['fas', 'arrow-right-from-bracket']" />
       </AppButton>
@@ -73,7 +78,7 @@ const auth = false
       :show="showModal"
       @close="showModal = false"
     >
-      <FormSignUp @submit="showModal = false" />
+      <FormSignIn @submit="showModal = false" />
     </AppModal>
   </Teleport>
 </template>
