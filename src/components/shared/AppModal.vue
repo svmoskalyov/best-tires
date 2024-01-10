@@ -1,15 +1,18 @@
 <script setup>
 import { onMounted, onUnmounted } from 'vue'
 import AppButton from './AppButton.vue'
+import { useRouter } from 'vue-router'
 
 const props = defineProps({
   show: Boolean
 })
 
+const router = useRouter()
 const emit = defineEmits(['close'])
 
 function closeModal() {
   emit('close')
+  // router.go(-1)
 }
 
 function keydownListener(event) {
