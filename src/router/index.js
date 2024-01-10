@@ -3,6 +3,7 @@ import { ROUTES_PATHS } from '@/constants'
 
 const HomeView = () => import('../views/HomeView.vue')
 const TiresView = () => import('../views/TiresView.vue')
+const SignUpView = () => import('../views/SignUpView.vue')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,6 +17,11 @@ const router = createRouter({
       path: ROUTES_PATHS.TIRES,
       name: ROUTES_PATHS.TIRES,
       component: TiresView
+    },
+    {
+      path: ROUTES_PATHS.SIGNUP,
+      name: ROUTES_PATHS.SIGNUP,
+      component: SignUpView
     },
     {
       path: ROUTES_PATHS.NOTFOUND,
