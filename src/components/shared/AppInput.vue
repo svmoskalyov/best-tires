@@ -110,7 +110,7 @@ const updateValue = e => {
   width: 100%
   position: relative
   z-index: 1
-  background: inherit
+  background: $background
   outline: none
 
 .input-text:focus
