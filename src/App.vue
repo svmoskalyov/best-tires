@@ -8,7 +8,7 @@ import Container from './components/shared/AppContainer.vue'
 <template>
   <div class="app">
     <Header />
-    <main class="main">
+    <main>
       <Container>
         <RouterView />
       </Container>
