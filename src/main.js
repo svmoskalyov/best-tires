@@ -3,7 +3,7 @@ import './assets/styles/main.sass'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { initializeApp } from 'firebase/app'
-import firebaseConfig from './services/firebaseConfig'
+import firebaseConfig from './services/firebase'
 
 import App from './App.vue'
 import router from './router'
