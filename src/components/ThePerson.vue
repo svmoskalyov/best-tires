@@ -1,14 +1,21 @@
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { ROUTES_PATHS } from '@/constants/router'
+
 import AppButton from './shared/AppButton.vue'
 import AppModal from './shared/AppModal.vue'
-import FormSignIn from './FormSignIn.vue'
+import FormAuth from './FormAuth.vue'
 
+const router = useRouter()
 const showModal = ref(false)
-
 const favoritesCount = false
 const cartCount = false
 const auth = false
+
+function goSIGNUP() {
+  router.push(ROUTES_PATHS.SIGNUP)
+}
 
 function signOut() {
   console.log('SignOut')
@@ -56,10 +63,16 @@ function signOut() {
     </div>
 
     <div class="auth-actions">
-      <AppButton
+      <!-- <AppButton
         v-if="!auth"
         icon
         @click="showModal = true"
+      > -->
+
+      <AppButton
+        v-if="!auth"
+        icon
+        @click="goSIGNUP"
       >
         <font-awesome-icon :icon="['fas', 'arrow-right-to-bracket']" />
       </AppButton>
@@ -73,14 +86,20 @@ function signOut() {
     </div>
   </div>
 
-  <Teleport to="body">
+  <!-- <Teleport to="body">
     <AppModal
       :show="showModal"
       @close="showModal = false"
-    >
-      <FormSignIn @submit="showModal = false" />
-    </AppModal>
-  </Teleport>
+    > -->
+
+  <!-- <FormAuth
+        title="Create an account"
+        lable-btn="Sign up"
+        @submit="showModal = false"
+      /> -->
+
+  <!-- </AppModal>
+  </Teleport> -->
 </template>
 
 <style lang="sass" scoped>
