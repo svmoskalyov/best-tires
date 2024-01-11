@@ -1,21 +1,15 @@
 <script setup>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 import { ROUTES_PATHS } from '@/constants/router'
 
 import AppButton from './shared/AppButton.vue'
 import AppModal from './shared/AppModal.vue'
 import FormAuth from './FormAuth.vue'
 
-const router = useRouter()
 const showModal = ref(false)
 const favoritesCount = false
 const cartCount = false
 const auth = false
-
-function goSIGNUP() {
-  router.push(ROUTES_PATHS.SIGNUP)
-}
 
 function signOut() {
   console.log('SignOut')
@@ -72,7 +66,7 @@ function signOut() {
       <AppButton
         v-if="!auth"
         icon
-        @click="goSIGNUP"
+        @click="$router.push(ROUTES_PATHS.SIGNIN)"
       >
         <font-awesome-icon :icon="['fas', 'arrow-right-to-bracket']" />
       </AppButton>
