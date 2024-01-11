@@ -12,7 +12,7 @@ const getAllTires = async () => {
   showLoader.value = true
   try {
     const response = await axios.get(
-      `https://best-tires-cbf5f-default-rtdb.europe-west1.firebasedatabase.app/tires.json?auth=${authStore.userInfo.token}`
+      `https://best-tires-cbf5f-default-rtdb.europe-west1.firebasedatabase.app/tires.json`
     )
     console.log(response.data)
     // tires.value = response.data
