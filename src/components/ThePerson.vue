@@ -1,15 +1,20 @@
 <script setup>
 import { ref } from 'vue'
 import { ROUTES_PATHS } from '@/constants/router'
+import { useAuthStore } from '@/stores/auth'
+import { computed } from 'vue'
 
 import AppButton from './shared/AppButton.vue'
 import AppModal from './shared/AppModal.vue'
 import FormAuth from './FormAuth.vue'
 
+const authStore = useAuthStore()
 const showModal = ref(false)
 const favoritesCount = false
 const cartCount = false
 const auth = false
+
+const token = computed(() => authStore.userInfo.token)
 
 function signOut() {
   console.log('SignOut')
@@ -64,7 +69,7 @@ function signOut() {
       > -->
 
       <AppButton
-        v-if="!auth"
+        v-if="!token"
         icon
         @click="$router.push(ROUTES_PATHS.SIGNIN)"
       >
