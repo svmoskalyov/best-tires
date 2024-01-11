@@ -13,13 +13,14 @@ export const useAuthStore = defineStore('auth', () => {
     refreshToken: ''
   })
 
-  const signup = async payload => {
+  const auth = async (payload, type) => {
+    const stringUrl = type === 'signin' ? 'signInWithPassword' : 'signUp'
     error.value = ''
     loader.value = true
 
     try {
       let response = await axios.post(
-        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${firebase.apiKey}`,
+        `https://identitytoolkit.googleapis.com/v1/accounts:${stringUrl}?key=${firebase.apiKey}`,
         {
           ...payload,
           returnSecureToken: true
@@ -63,5 +64,5 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  return { signup, userInfo, error, loader }
+  return { auth, userInfo, error, loader }
 })
