@@ -3,6 +3,19 @@ import { RouterView } from 'vue-router'
 import Header from './components/TheHeader.vue'
 import Footer from './components/TheFooter.vue'
 import Container from './components/shared/AppContainer.vue'
+import { useAuthStore } from '@/stores/auth'
+
+const authStore = useAuthStore()
+
+const checkUser = () => {
+  const tokens = JSON.parse(localStorage.getItem('userTokens'))
+  if (tokens) {
+    authStore.userInfo.token = tokens.token
+    authStore.userInfo.refreshToken = tokens.refreshToken
+  }
+}
+
+checkUser()
 </script>
 
 <template>
