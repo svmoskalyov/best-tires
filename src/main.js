@@ -4,6 +4,7 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { initializeApp } from 'firebase/app'
 import firebaseConfig from './services/firebase'
+import '@/services/axios'
 
 import App from './App.vue'
 import router from './router'
