@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import useVuelidate from '@vuelidate/core'
 import { required, helpers } from '@vuelidate/validators'
 
@@ -10,6 +11,8 @@ import AppModal from './shared/AppModal.vue'
 import { useAuthStore } from '@/stores/auth'
 import { ROUTES_PATHS } from '@/constants/router'
 
+const route = useRoute()
+const router = useRouter()
 const emit = defineEmits(['submit'])
 const authStore = useAuthStore()
 const props = defineProps({
@@ -56,16 +59,20 @@ const submitForm = async () => {
   v$.value.$touch()
   if (v$.value.$error) return
 
-  await authStore.signup({
-    email: form.value.emailField,
-    password: form.value.passwordField
-  })
+  await authStore.auth(
+    {
+      email: form.value.emailField,
+      password: form.value.passwordField
+    },
+    route.path === '/signin' ? 'signin' : 'signup'
+  )
 
   if (authStore.error) return
 
   v$.value.$reset()
   form.value = form
   closeModal()
+  router.go(-1)
 }
 </script>
 
@@ -80,8 +87,8 @@ const submitForm = async () => {
     class="form"
     @submit.prevent="submitForm"
   >
-    <div v-if="authStore.loader">Loading...</div>
-    <div v-else>{{ authStore.error }}</div>
+    <!-- <div v-if="authStore.loader">Loading...</div>
+    <div v-else>{{ authStore.error }}</div> -->
     <!-- <div v-if="authStore.error">{{ authStore.error }}</div> -->
 
     <!-- <h2 class="form-title">Create an account</h2> -->
