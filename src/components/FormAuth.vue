@@ -8,6 +8,7 @@ import AppButton from './shared/AppButton.vue'
 import AppModal from './shared/AppModal.vue'
 
 import { useAuthStore } from '@/stores/auth'
+import { ROUTES_PATHS } from '@/constants/router'
 
 const emit = defineEmits(['submit'])
 const authStore = useAuthStore()
@@ -124,6 +125,32 @@ const submitForm = async () => {
       :label="lableBtn"
       class="form-btn"
     />
+
+    <span
+      v-if="$route.path === '/signin'"
+      class="form-link"
+    >
+      Don't you have an account?
+      <RouterLink
+        class="form-link-to"
+        :to="ROUTES_PATHS.SIGNUP"
+      >
+        Sign up
+      </RouterLink>
+    </span>
+
+    <span
+      v-else
+      class="form-link"
+    >
+      Already have an account?
+      <RouterLink
+        class="form-link-to"
+        :to="ROUTES_PATHS.SIGNIN"
+      >
+        Sign in
+      </RouterLink>
+    </span>
   </form>
 
   <!-- </AppModal>
@@ -147,6 +174,16 @@ const submitForm = async () => {
   text-align: center
 
 .form-btn
-  margin-top: 20px
+  margin: 20px 0
   width: 100%
+
+.form-link
+  font-size: 13px
+
+.form-link-to
+  font-size: 14px
+  font-weight: 700
+
+.form-link-to:hover
+  color: $accent
 </style>
