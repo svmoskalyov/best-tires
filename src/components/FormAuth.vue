@@ -25,16 +25,16 @@ const props = defineProps({
     default: 'Submit'
   }
 })
-const showModal = ref(true)
+// const showModal = ref(true)
 const form = ref({
   emailField: '',
   passwordField: '',
   passwordVisible: false
 })
 
-function closeModal() {
-  emit('submit')
-}
+// function closeModal() {
+//   emit('submit')
+// }
 
 const rules = computed(() => ({
   emailField: {
@@ -71,7 +71,7 @@ const submitForm = async () => {
 
   v$.value.$reset()
   form.value = form
-  closeModal()
+  // closeModal()
   router.go(-1)
 }
 </script>
