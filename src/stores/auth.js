@@ -34,6 +34,14 @@ export const useAuthStore = defineStore('auth', () => {
         refreshToken: response.data.refreshToken
       }
 
+      localStorage.setItem(
+        'userTokens',
+        JSON.stringify({
+          token: userInfo.value.token,
+          refreshToken: userInfo.value.refreshToken
+        })
+      )
+
       console.log(response.data)
     } catch (err) {
       switch (err.response.data.error.message) {
