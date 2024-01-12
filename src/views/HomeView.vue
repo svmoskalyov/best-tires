@@ -12,7 +12,6 @@ function goTires() {
 
 <template>
   <div class="home">
-    <!-- <h1 class="home-title">The best tires</h1> -->
     <svg class="home-svg">
       <text
         class="home-svg-text"
@@ -24,42 +23,25 @@ function goTires() {
         The best tires
       </text>
     </svg>
-    <div class="home-wrapper">
-      <span class="home-text">choose from us</span>
-      <AppButton
-        class="home-btn"
-        label="Start"
-        @click="goTires"
-      />
-    </div>
+
+    <AppButton
+      class="home-btn"
+      label="Choose Tires"
+      @click="goTires"
+    />
   </div>
 </template>
 
 <style lang="sass" scoped>
 @import '../assets/styles/main'
 .home
+  display: flex
+  flex-direction: column
+  align-items: center
+  gap: 40px
   min-height: 100%
   padding: 20px
   outline: 1px solid blue
-
-// .home-title
-//   margin-top: 60px
-//   font-size: 74px
-//   font-weight: 700
-//   color: $accent
-
-.home-wrapper
-  display: flex
-  flex-wrap: wrap
-  align-items: center
-  gap: 20px
-
-.home-text
-  font-size: 44px
-  line-height: 1.8
-
-.home-btn
-  width: 140px
 
 .home-svg
   width: 100%
@@ -72,6 +54,9 @@ function goTires() {
   stroke: $accent
   font-size: 100px
   font-weight: 700
+
+.home-btn
+  width: 240px
 
 @keyframes stroke
   0%
