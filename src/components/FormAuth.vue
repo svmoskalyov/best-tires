@@ -4,12 +4,12 @@ import { useRoute, useRouter } from 'vue-router'
 import useVuelidate from '@vuelidate/core'
 import { required, helpers } from '@vuelidate/validators'
 
+import { useAuthStore } from '@/stores/auth'
+import { ROUTES_PATHS } from '@/constants/router'
+
 import AppInput from './shared/AppInput.vue'
 import AppButton from './shared/AppButton.vue'
 import AppModal from './shared/AppModal.vue'
-
-import { useAuthStore } from '@/stores/auth'
-import { ROUTES_PATHS } from '@/constants/router'
 
 const route = useRoute()
 const router = useRouter()
@@ -64,7 +64,7 @@ const submitForm = async () => {
       email: form.value.emailField,
       password: form.value.passwordField
     },
-    route.path === '/signin' ? 'signin' : 'signup'
+    route.path === ROUTES_PATHS.SIGNIN ? 'signin' : 'signup'
   )
 
   if (authStore.error) return
@@ -134,7 +134,7 @@ const submitForm = async () => {
     />
 
     <span
-      v-if="$route.path === '/signin'"
+      v-if="$route.path === ROUTES_PATHS.SIGNIN"
       class="form-link"
     >
       Don't you have an account?
