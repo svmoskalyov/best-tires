@@ -1,5 +1,10 @@
 <script setup>
+// import { computed } from 'vue'
+// import { useAuthStore } from '@/stores/auth'
 import { ROUTES_PATHS } from '@/constants/router'
+
+// const authStore = useAuthStore()
+// const token = computed(() => authStore.userInfo.token)
 </script>
 
 <template>
@@ -13,6 +18,11 @@ import { ROUTES_PATHS } from '@/constants/router'
       class="nav-link"
       :to="ROUTES_PATHS.TIRES"
       >Tires</RouterLink
+    >
+    <RouterLink
+      class="nav-link"
+      :to="ROUTES_PATHS.ABOUT"
+      >About</RouterLink
     >
   </nav>
 </template>
