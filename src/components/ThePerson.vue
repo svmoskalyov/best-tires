@@ -1,13 +1,14 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import { ROUTES_PATHS } from '@/constants/router'
 import { useAuthStore } from '@/stores/auth'
-import { computed } from 'vue'
 
 import AppButton from './shared/AppButton.vue'
 import AppModal from './shared/AppModal.vue'
 import FormAuth from './FormAuth.vue'
 
+const router = useRouter()
 const authStore = useAuthStore()
 const showModal = ref(false)
 const favoritesCount = false
@@ -17,7 +18,9 @@ const auth = false
 const token = computed(() => authStore.userInfo.token)
 
 function signOut() {
-  console.log('SignOut')
+  authStore.signout()
+  localStorage.removeItem('userTokens')
+  router.push(ROUTES_PATHS.SIGNIN)
 }
 </script>
 
