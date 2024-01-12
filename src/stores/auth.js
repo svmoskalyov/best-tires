@@ -1,7 +1,7 @@
 import { ref } from 'vue'
-import axios from 'axios'
 import { defineStore } from 'pinia'
 import firebase from '@/services/firebase'
+import axiosApiInstance from '@/services/axios'
 
 export const useAuthStore = defineStore('auth', () => {
   const error = ref('')
@@ -19,7 +19,7 @@ export const useAuthStore = defineStore('auth', () => {
     loader.value = true
 
     try {
-      let response = await axios.post(
+      let response = await axiosApiInstance.post(
         `https://identitytoolkit.googleapis.com/v1/accounts:${stringUrl}?key=${firebase.apiKey}`,
         {
           ...payload,
@@ -41,8 +41,7 @@ export const useAuthStore = defineStore('auth', () => {
           refreshToken: userInfo.value.refreshToken
         })
       )
-
-      console.log(response.data)
+      // console.log(response.data)
     } catch (err) {
       switch (err.response.data.error.message) {
         case 'EMAIL_EXISTS':
@@ -72,5 +71,14 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  return { auth, userInfo, error, loader }
+  const signout = () => {
+    userInfo.value = {
+      token: '',
+      email: '',
+      userId: '',
+      refreshToken: ''
+    }
+  }
+
+  return { auth, userInfo, error, loader, signout }
 })
