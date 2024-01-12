@@ -1,17 +1,14 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import axios from 'axios'
-import { useAuthStore } from '@/stores/auth'
+import axiosApiInstance from '@/services/axios'
 
-const authStore = useAuthStore()
-
-const tires = ref()
+const tires = ref([])
 const showLoader = ref(false)
 
 const getAllTires = async () => {
   showLoader.value = true
   try {
-    const response = await axios.get(
+    const response = await axiosApiInstance.get(
       `https://best-tires-cbf5f-default-rtdb.europe-west1.firebasedatabase.app/tires.json`
     )
     console.log(response.data)
