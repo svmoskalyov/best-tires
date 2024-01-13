@@ -3,7 +3,7 @@ import FormAuth from '@/components/FormAuth.vue'
 </script>
 
 <template>
-  <div class="signup-page">
+  <div class="signup">
     <FormAuth
       title="Create an account"
       lable-btn="Sign up"
@@ -12,7 +12,7 @@ import FormAuth from '@/components/FormAuth.vue'
 </template>
 
 <style lang="sass" scoped>
-.signup-page
+.signup
   display: flex
   justify-content: center
   align-items: center
