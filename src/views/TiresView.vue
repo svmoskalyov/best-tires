@@ -1,16 +1,20 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import axiosApiInstance from '@/services/axios'
+import TiresList from '@/components/TiresList.vue'
+import { useTiresStore } from '@/stores/tires'
+import firebase from '@/services/firebase'
 
-const tires = ref([])
 const showLoader = ref(false)
+const tiresStore = useTiresStore()
 
 const getAllTires = async () => {
   showLoader.value = true
   try {
     const response = await axiosApiInstance.get(
-      `https://best-tires-cbf5f-default-rtdb.europe-west1.firebasedatabase.app/tires.json`
+      `${firebase.databaseURL}/tires.json`
     )
+    console.log(response)
     console.log(response.data)
     // tires.value = response.data
   } catch (err) {
@@ -21,7 +25,7 @@ const getAllTires = async () => {
 }
 
 onMounted(async () => {
-  await getAllTires()
+  // await getAllTires()
 })
 </script>
 
@@ -29,7 +33,8 @@ onMounted(async () => {
   <div class="tires">
     <h2>This is an tires page</h2>
     <span v-if="showLoader">loading...</span>
-    <div>list card tires</div>
+
+    <TiresList :tires="tiresStore.tires" />
   </div>
 </template>
 
