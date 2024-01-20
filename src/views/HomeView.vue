@@ -42,6 +42,10 @@ function goTires() {
   min-height: 100%
   padding: 20px
   outline: 1px solid blue
+  background-image: url('img/bg.jpg')
+  background-repeat: no-repeat
+  background-size: cover
+  background-position: center
 
 .home-svg
   width: 100%
