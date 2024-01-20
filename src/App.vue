@@ -35,8 +35,4 @@ checkUser()
   display: grid
   grid: "header" auto "main" 1fr "footer" auto
   min-height: 100vh
-  background-image: url('img/bg.jpg')
-  background-repeat: no-repeat
-  background-size: cover
-  background-position: center
 </style>
