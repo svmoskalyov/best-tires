@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import AppButton from './shared/AppButton.vue'
+import AppInfoList from './shared/AppInfoList.vue'
 
 const props = defineProps({
   tire: {
@@ -13,14 +14,14 @@ const props = defineProps({
 const favorites = ref(false)
 // const hover = ref(false)
 const hover = ref(true)
-const infoArr = ref([
+const infoList = ref([
   {
     name: 'Brand',
-    text: props.tire.brand[0].toUpperCase() + props.tire.brand.slice(1)
+    value: props.tire.brand[0].toUpperCase() + props.tire.brand.slice(1)
   },
-  { name: 'Type', text: props.tire.type },
-  { name: 'Season', text: props.tire.season },
-  { name: 'Diameter', text: props.tire.diameter }
+  { name: 'Type', value: props.tire.type },
+  { name: 'Season', value: props.tire.season },
+  { name: 'Diameter', value: props.tire.diameter }
 ])
 
 function tireName() {
@@ -85,43 +86,7 @@ function toogleFavorites() {
       v-if="hover"
       class="info"
     >
-      <!-- <ul class="info-list">
-        <li class="info-item">
-          <span class="info-name">Brand:</span>
-          <span class="info-dots"></span>
-          <span class="info-text">
-            {{ tire.brand[0].toUpperCase() + tire.brand.slice(1) }}
-          </span>
-        </li>
-        <li class="info-item">
-          <span class="info-name">Type:</span>
-          <span class="info-dots"></span>
-          <span class="info-text">{{ tire.type }}</span>
-        </li>
-        <li class="info-item">
-          <span class="info-name">Season:</span>
-          <span class="info-dots"></span>
-          <span class="info-text">{{ tire.season }}</span>
-        </li>
-        <li class="info-item">
-          <span class="info-name">Diameter:</span>
-          <span class="info-dots"></span>
-          <span class="info-text">{{ tire.diameter }}</span>
-        </li>
-      </ul> -->
-
-      <ul class="info-list">
-        <li
-          v-for="info of infoArr"
-          :key="info.name"
-          class="info-item"
-        >
-          <span class="info-name">{{ info.name }}</span>
-          <span class="info-dots"></span>
-          <span class="info-text">{{ info.text }}</span>
-        </li>
-      </ul>
-
+      <AppInfoList :list="infoList" />
       <AppButton
         class="info-btn"
         label="Details"
@@ -196,23 +161,4 @@ function toogleFavorites() {
   border-bottom-right-radius: 7px
   box-shadow: 0px 12px 22px 2px rgba(108,25,179,0.5)
   z-index: 3
-
-.info-list
-  display: flex
-  flex-direction: column
-  gap: 2px
-  margin-bottom: 10px
-
-.info-item
-  display: flex
-  align-items: flex-end
-
-.info-item .info-dots
-  flex-grow: 1
-  border-bottom: 1px dotted $text
-
-.info-item .info-text
-  flex-basis: 120px
-  white-space: nowrap
-  overflow: hidden
 </style>
