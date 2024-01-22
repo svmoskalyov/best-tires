@@ -84,8 +84,11 @@ const updateValue = e => {
 @import '../../assets/styles/main'
 
 .form-input
-  margin-bottom: 30px
+  margin-bottom: 10px
   position: relative
+
+  @media screen and (min-height: 431px)
+    margin-bottom: 30px
 
 .form-error
   background: $error
