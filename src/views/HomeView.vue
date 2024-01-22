@@ -40,8 +40,6 @@ function goTires() {
   align-items: center
   gap: 40px
   min-height: 100%
-  padding: 20px
-  outline: 1px solid blue
   background-image: url('img/bg.jpg')
   background-repeat: no-repeat
   background-size: cover
@@ -50,14 +48,19 @@ function goTires() {
 .home-svg
   width: 100%
   height: 100%
-  margin-top: 60px
+
+  @media screen and (min-height: 431px) and (orientation: landscape)
+    margin-top: 60px
 
 .home-svg-text
   animation: stroke 5s infinite alternate
   stroke-width: 2
   stroke: $accent
-  font-size: 100px
+  font-size: 40px
   font-weight: 700
+
+  @media screen and (min-width: 768px)
+    font-size: 100px
 
 .home-btn
   width: 240px
