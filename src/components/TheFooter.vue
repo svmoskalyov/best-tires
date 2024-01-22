@@ -24,14 +24,19 @@ import AppButton from './shared/AppButton.vue'
 </template>
 
 <style lang="sass" scoped>
+@import '../assets/styles/main'
 
 .footer
   grid-area: footer
-  outline: 1px solid tomato
+  padding: 0 20px
 
 .footer-content
   display: flex
   justify-content: space-between
   align-items: center
   height: 48px
+  background: $background
+
+  @media screen and (max-width: 767px)
+    padding: 0
 </style>
