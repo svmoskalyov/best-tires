@@ -110,6 +110,7 @@ function signOut() {
 .person
   display: flex
   gap: 12px
+
 .favorites
   position: relative
 
