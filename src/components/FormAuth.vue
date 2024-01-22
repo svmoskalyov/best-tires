@@ -168,21 +168,32 @@ const submitForm = async () => {
 @import '../assets/styles/main'
 
 .form
-  padding: 30px
+  padding: 20px
   width: 350px
   background: $background
   border: 1px solid $border
   border-radius: 7px
+
+  @media screen and (max-width: 767px)
+    width: 310px
+    border: none
+
 .form-title
-  margin-bottom: 50px
+  margin-bottom: 20px
   color: $accent
   font-size: 20px
   font-weight: 700
   text-align: center
 
+  @media screen and (min-height: 431px)
+    margin-bottom: 50px
+
 .form-btn
-  margin: 20px 0
+  margin: 5px 0
   width: 100%
+
+  @media screen and (min-height: 431px)
+    margin: 20px 0
 
 .form-link
   font-size: 13px
