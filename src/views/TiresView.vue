@@ -41,6 +41,7 @@ onMounted(async () => {
 <style lang="sass" scoped>
 
 .tires
+  padding: 20px
   min-height: 100%
   outline: 1px solid blue
 </style>
