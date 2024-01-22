@@ -18,13 +18,23 @@ import Container from './shared/AppContainer.vue'
 </template>
 
 <style lang="sass" scoped>
+@import '../assets/styles/main'
+
 .header
   grid-area: header
-  outline: 1px solid green
 
 .header-content
   display: flex
   justify-content: space-between
   align-items: center
+  padding: 0 20px
   height: 60px
+  background: $background
+
+  @media screen and (max-width: 767px) and (orientation: portrait)
+    flex-wrap: wrap
+    justify-content: space-around
+    gap: 10px
+    padding-top: 20px
+    height: 100px
 </style>
