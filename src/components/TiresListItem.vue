@@ -12,8 +12,6 @@ const props = defineProps({
 })
 
 const favorites = ref(false)
-// const hover = ref(false)
-const hover = ref(true)
 const infoList = ref([
   {
     name: 'Brand',
@@ -37,12 +35,6 @@ function toogleFavorites() {
 </script>
 
 <template>
-  <!-- <div
-    class="card"
-    @mouseover="hover = true"
-    @mouseleave="hover = false"
-  > -->
-
   <div class="card">
     <div class="img-wrapper">
       <img
@@ -82,10 +74,7 @@ function toogleFavorites() {
       />
     </div>
 
-    <div
-      v-if="hover"
-      class="info"
-    >
+    <div class="info">
       <AppInfoList :list="infoList" />
       <AppButton
         class="info-btn"
@@ -99,15 +88,16 @@ function toogleFavorites() {
 @import '../assets/styles/main'
 
 .card
-  position: relative
   width: 274px
   background: $background
   border: 1px solid $border
   border-radius: 7px
   padding: 20px
+  transition: .2s
 
 .card:hover
-  box-shadow: 0px 2px 22px 2px rgba(108,25,179,0.5)
+  box-shadow: 0px 2px 22px 2px rgba(108,25,179,0.8)
+  border: 1px solid transparent
 
 .img-wrapper
   display: flex
@@ -123,14 +113,17 @@ function toogleFavorites() {
   border-top-left-radius: 7px
   border-top-right-radius: 7px
   background: $background
-  transition: all 0.3s ease
+  transition: all 0.2s ease
 
 .card-img-def
   width: 30%
   height: 30%
 
 .card:hover .card-img
-  transform: scale(1.1)
+  transform: scale(1.05)
+
+.card-info
+  margin-bottom: 20px
 
 .card-name
   font-size: 18px
@@ -147,18 +140,4 @@ function toogleFavorites() {
 
 .card-btn, .info-btn
   width: 100%
-
-.info
-  position: absolute
-  bottom: -180px
-  left: -1px
-  padding: 20px
-  width: 274px
-  background: $background
-  border: 1px solid $border
-  border-top: none
-  border-bottom-left-radius: 7px
-  border-bottom-right-radius: 7px
-  box-shadow: 0px 12px 22px 2px rgba(108,25,179,0.5)
-  z-index: 3
 </style>
