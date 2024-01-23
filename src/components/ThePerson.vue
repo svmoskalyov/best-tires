@@ -3,6 +3,7 @@ import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { ROUTES_PATHS } from '@/constants/router'
 import { useAuthStore } from '@/stores/auth'
+import { useTiresStore } from '@/stores/tires'
 
 import AppButton from './shared/AppButton.vue'
 import AppModal from './shared/AppModal.vue'
@@ -10,8 +11,8 @@ import FormAuth from './FormAuth.vue'
 
 const router = useRouter()
 const authStore = useAuthStore()
+const tiresStore = useTiresStore()
 const showModal = ref(false)
-const favoritesCount = false
 const cartCount = false
 const auth = false
 
@@ -19,7 +20,6 @@ const token = computed(() => authStore.userInfo.token)
 
 function signOut() {
   authStore.signout()
-  localStorage.removeItem('userTokens')
   router.push(ROUTES_PATHS.SIGNIN)
 }
 </script>
@@ -29,11 +29,12 @@ function signOut() {
     <div class="favorites">
       <AppButton
         icon
-        :disabled="!favoritesCount"
+        :disabled="tiresStore.countFavorites === 0"
+        @click="$router.push(ROUTES_PATHS.FAVORITES)"
       >
         <font-awesome-icon
           :icon="['fas', 'heart']"
-          :class="{ 'favorites-icon': favoritesCount }"
+          :class="{ 'favorites-icon': tiresStore.countFavorites > 0 }"
         />
       </AppButton>
 
@@ -41,10 +42,10 @@ function signOut() {
         :class="[
           'count',
           'favorites-count',
-          { 'count-disabled': !favoritesCount }
+          { 'count-disabled': tiresStore.countFavorites === 0 }
         ]"
       >
-        0
+        {{ tiresStore.countFavorites }}
       </span>
     </div>
 
