@@ -4,6 +4,9 @@ import { useAuthStore } from '@/stores/auth'
 
 const HomeView = () => import('../views/HomeView.vue')
 const TiresView = () => import('../views/TiresView.vue')
+const TiresDetails = () => import('../components/TiresListItemDetails.vue')
+const FavoritesView = () => import('../views/FavoritesView.vue')
+const CartView = () => import('../views/CartView.vue')
 const AboutView = () => import('../views/AboutView.vue')
 const SignUpView = () => import('../views/SignUpView.vue')
 const SignInView = () => import('../views/SignInView.vue')
@@ -22,11 +25,32 @@ const router = createRouter({
       component: TiresView
     },
     {
+      path: ROUTES_PATHS.TIRES_ID,
+      name: ROUTES_PATHS.TIRES_ID,
+      component: TiresDetails
+    },
+    {
+      path: ROUTES_PATHS.FAVORITES,
+      name: ROUTES_PATHS.FAVORITES,
+      component: FavoritesView,
+      meta: {
+        auth: false
+      }
+    },
+    {
+      path: ROUTES_PATHS.CART,
+      name: ROUTES_PATHS.CART,
+      component: CartView,
+      meta: {
+        auth: false
+      }
+    },
+    {
       path: ROUTES_PATHS.ABOUT,
       name: ROUTES_PATHS.ABOUT,
       component: AboutView,
       meta: {
-        auth: true
+        auth: false
       }
     },
     {
