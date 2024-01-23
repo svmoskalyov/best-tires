@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, watch } from 'vue'
+import { ref, computed, watch } from 'vue'
 
 export const useTiresStore = defineStore('tiresStore', () => {
   const error = ref('')
@@ -81,6 +81,12 @@ export const useTiresStore = defineStore('tiresStore', () => {
   const favorites = ref([])
   const cart = ref([])
 
+  const totalCountTires = computed(() => tires.value.length)
+
+  function getTireById(id) {
+    return tires.value.find(el => el.id === id)
+  }
+
   function $reset() {
     error.value = ''
     loader.value = false
@@ -95,7 +101,16 @@ export const useTiresStore = defineStore('tiresStore', () => {
   //   { deep: true }
   // )
 
-  return { loader, error, tires, favorites, cart, $reset }
+  return {
+    loader,
+    error,
+    tires,
+    favorites,
+    cart,
+    $reset,
+    getTireById,
+    totalCountTires
+  }
 })
 
 // ref()s become state properties
