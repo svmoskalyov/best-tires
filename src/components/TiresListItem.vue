@@ -14,7 +14,6 @@ const props = defineProps({
   }
 })
 
-const favorites = ref(false)
 const infoList = ref([
   {
     name: 'Brand',
@@ -32,7 +31,7 @@ function tireName() {
 }
 
 function toogleFavorites() {
-  favorites.value = !favorites.value
+  tiresStore.toggleFavorites(props.tire)
 }
 </script>
 
@@ -65,7 +64,7 @@ function toogleFavorites() {
         >
           <font-awesome-icon
             :icon="['fas', 'heart']"
-            :class="{ 'favorites-icon': favorites }"
+            :class="{ 'favorites-icon': tire.isFav }"
           />
         </AppButton>
       </div>
