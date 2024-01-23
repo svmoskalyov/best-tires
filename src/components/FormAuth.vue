@@ -72,7 +72,11 @@ const submitForm = async () => {
   v$.value.$reset()
   form.value = form
   // closeModal()
-  router.go(-1)
+  if (route?.redirectedFrom?.path) {
+    router.push(route.redirectedFrom.path)
+  } else {
+    router.go(-1)
+  }
 }
 </script>
 
