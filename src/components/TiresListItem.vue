@@ -2,7 +2,10 @@
 import { ref } from 'vue'
 import AppButton from './shared/AppButton.vue'
 import AppInfoList from './shared/AppInfoList.vue'
+import { useTiresStore } from '@/stores/tires'
+import { ROUTES_PATHS } from '@/constants/router'
 
+const tiresStore = useTiresStore()
 const props = defineProps({
   tire: {
     type: Object,
@@ -18,8 +21,7 @@ const infoList = ref([
     value: props.tire.brand[0].toUpperCase() + props.tire.brand.slice(1)
   },
   { name: 'Type', value: props.tire.type },
-  { name: 'Season', value: props.tire.season },
-  { name: 'Diameter', value: props.tire.diameter }
+  { name: 'Season', value: props.tire.season }
 ])
 
 function tireName() {
@@ -79,6 +81,7 @@ function toogleFavorites() {
       <AppButton
         class="info-btn"
         label="Details"
+        @click="$router.push(`${ROUTES_PATHS.TIRES}/${tire.id}`)"
       />
     </div>
   </div>
