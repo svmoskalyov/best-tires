@@ -7,10 +7,6 @@ import AppInfoList from './shared/AppInfoList.vue'
 
 const route = useRoute()
 const tiresStore = useTiresStore()
-
-const tire = tiresStore.getTireById(route.params.id)
-
-const favorites = ref(false)
 const infoList = ref([
   {
     name: 'Brand',
@@ -23,6 +19,8 @@ const infoList = ref([
   { name: 'Profile', value: tire.profile }
 ])
 
+const tire = tiresStore.getTireById(route.params.id)
+
 function tireName() {
   const { brand, width, profile, diameter } = tire
   const nameTire =
@@ -31,7 +29,7 @@ function tireName() {
 }
 
 function toogleFavorites() {
-  favorites.value = !favorites.value
+  tiresStore.toggleFavorites(tire)
 }
 </script>
 
@@ -71,7 +69,7 @@ function toogleFavorites() {
             >
               <font-awesome-icon
                 :icon="['fas', 'heart']"
-                :class="{ 'favorites-icon': favorites }"
+                :class="{ 'favorites-icon': tire.isFav }"
               />
             </AppButton>
           </div>
