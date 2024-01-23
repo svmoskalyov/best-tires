@@ -81,35 +81,60 @@ export const useTiresStore = defineStore('tiresStore', () => {
   const favorites = ref([])
   const cart = ref([])
 
-  const totalCountTires = computed(() => tires.value.length)
+  const tiresInLocalStorage = localStorage.getItem('tires')
+  if (tiresInLocalStorage) {
+    tires.value = JSON.parse(tiresInLocalStorage)
+  }
+
+  const tiresFavInLocalStorage = localStorage.getItem('tiresFav')
+  if (tiresFavInLocalStorage) {
+    favorites.value = JSON.parse(tiresFavInLocalStorage)
+  }
+
+  const countTires = computed(() => tires.value.length)
+  const countFavorites = computed(() => favorites.value.length)
 
   function getTireById(id) {
     return tires.value.find(el => el.id === id)
   }
 
-  function $reset() {
-    error.value = ''
-    loader.value = false
-    tires.value = []
+  function toggleFavorites(obj) {
+    const idx = tires.value.findIndex(el => el.id === obj.id)
+    tires.value[idx].isFav = !tires.value[idx].isFav
+
+    if (tires.value[idx].isFav) {
+      favorites.value.push(obj)
+    } else {
+      favorites.value = favorites.value.filter(el => el.id !== obj.id)
+    }
   }
 
-  // watch(
-  //   tires,
-  //   state => {
-  //     localStorage.setItem('tires', JSON.stringify(state))
-  //   },
-  //   { deep: true }
-  // )
+  watch(
+    tires,
+    state => {
+      localStorage.setItem('tires', JSON.stringify(state))
+    },
+    { deep: true }
+  )
+
+  watch(
+    favorites,
+    state => {
+      localStorage.setItem('tiresFav', JSON.stringify(state))
+    },
+    { deep: true }
+  )
 
   return {
-    loader,
     error,
+    loader,
     tires,
     favorites,
     cart,
-    $reset,
+    countTires,
+    countFavorites,
     getTireById,
-    totalCountTires
+    toggleFavorites
   }
 })
 
