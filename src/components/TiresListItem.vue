@@ -33,6 +33,12 @@ function tireName() {
 function toogleFavorites() {
   tiresStore.toggleFavorites(props.tire)
 }
+
+function buyTire() {
+  console.log('buy tire')
+  tiresStore.tireAddCart(props.tire)
+  console.log(tiresStore.totalTiresInCart)
+}
 </script>
 
 <template>
@@ -70,8 +76,17 @@ function toogleFavorites() {
       </div>
 
       <AppButton
+        v-if="!tiresStore.getTireInCartById(tire.id)"
         class="card-btn"
         label="Buy"
+        @click="buyTire"
+      />
+
+      <AppButton
+        v-else
+        class="card-btn"
+        label="In Cart"
+        @click="$router.push(ROUTES_PATHS.CART)"
       />
     </div>
 
