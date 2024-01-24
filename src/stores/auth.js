@@ -78,6 +78,7 @@ export const useAuthStore = defineStore('auth', () => {
       userId: '',
       refreshToken: ''
     }
+    localStorage.removeItem('userTokens')
   }
 
   return { auth, userInfo, error, loader, signout }
