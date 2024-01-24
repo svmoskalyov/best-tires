@@ -80,6 +80,7 @@ export const useTiresStore = defineStore('tiresStore', () => {
   ])
   const favorites = ref([])
   const cart = ref([])
+  const totalTiresInCart = ref(0)
 
   const tiresInLocalStorage = localStorage.getItem('tires')
   if (tiresInLocalStorage) {
@@ -89,6 +90,13 @@ export const useTiresStore = defineStore('tiresStore', () => {
   const tiresFavInLocalStorage = localStorage.getItem('tiresFav')
   if (tiresFavInLocalStorage) {
     favorites.value = JSON.parse(tiresFavInLocalStorage)
+  }
+
+  const tiresCartInLocalStorage = localStorage.getItem('tiresCart')
+  if (tiresCartInLocalStorage) {
+    cart.value = JSON.parse(tiresCartInLocalStorage)
+    // sum1TiresInCart()
+    sum2TiresInCart()
   }
 
   const countTires = computed(() => tires.value.length)
@@ -109,6 +117,44 @@ export const useTiresStore = defineStore('tiresStore', () => {
     }
   }
 
+  function tireAddCart(obj) {
+    const idx = tires.value.findIndex(el => el.id === obj.id)
+    tires.value[idx].count = 1
+    totalTiresInCart.value += 1
+    cart.value.push(obj)
+  }
+
+  function tirePlusCount(id) {
+    const idx = cart.value.findIndex(el => el.id === id)
+    cart.value[idx].count++
+  }
+
+  function tireMinusCount(id) {
+    const idx = cart.value.findIndex(el => el.id === id)
+    cart.value[idx].count--
+  }
+
+  function getTireInCartById(id) {
+    return cart.value.find(el => el.id === id)
+  }
+
+  function tireDelCart(id) {
+    cart.value = cart.value.filter(el => el.id !== id)
+  }
+
+  function sum1TiresInCart() {
+    totalTiresInCart.value = cart.value.reduce(
+      (accum, item) => accum + item.count,
+      0
+    )
+  }
+
+  function sum2TiresInCart() {
+    cart.value.forEach(el => {
+      totalTiresInCart.value += el.count
+    })
+  }
+
   watch(
     tires,
     state => {
@@ -125,6 +171,14 @@ export const useTiresStore = defineStore('tiresStore', () => {
     { deep: true }
   )
 
+  watch(
+    cart,
+    state => {
+      localStorage.setItem('tiresCart', JSON.stringify(state))
+    },
+    { deep: true }
+  )
+
   return {
     error,
     loader,
@@ -133,8 +187,14 @@ export const useTiresStore = defineStore('tiresStore', () => {
     cart,
     countTires,
     countFavorites,
+    totalTiresInCart,
     getTireById,
-    toggleFavorites
+    getTireInCartById,
+    toggleFavorites,
+    tireAddCart,
+    tirePlusCount,
+    tireMinusCount,
+    tireDelCart
   }
 })
 
