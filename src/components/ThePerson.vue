@@ -52,16 +52,23 @@ function signOut() {
     <div class="cart">
       <AppButton
         icon
-        :disabled="!cartCount"
+        :disabled="tiresStore.totalTiresInCart === 0"
+        @click="$router.push(ROUTES_PATHS.CART)"
       >
         <font-awesome-icon
           :icon="['fas', 'cart-shopping']"
-          :class="{ 'cart-icon': cartCount }"
+          :class="{ 'cart-icon': tiresStore.totalTiresInCart > 0 }"
         />
       </AppButton>
 
-      <span :class="['count', 'cart-count', { 'count-disabled': !cartCount }]">
-        0
+      <span
+        :class="[
+          'count',
+          'cart-count',
+          { 'count-disabled': tiresStore.totalTiresInCart === 0 }
+        ]"
+      >
+        {{ tiresStore.totalTiresInCart }}
       </span>
     </div>
 
