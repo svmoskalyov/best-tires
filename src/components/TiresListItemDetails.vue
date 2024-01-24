@@ -4,9 +4,13 @@ import { useRoute } from 'vue-router'
 import { useTiresStore } from '@/stores/tires'
 import AppButton from './shared/AppButton.vue'
 import AppInfoList from './shared/AppInfoList.vue'
+import { ROUTES_PATHS } from '@/constants/router'
 
 const route = useRoute()
 const tiresStore = useTiresStore()
+
+const tire = tiresStore.getTireById(route.params.id)
+
 const infoList = ref([
   {
     name: 'Brand',
@@ -19,8 +23,6 @@ const infoList = ref([
   { name: 'Profile', value: tire.profile }
 ])
 
-const tire = tiresStore.getTireById(route.params.id)
-
 function tireName() {
   const { brand, width, profile, diameter } = tire
   const nameTire =
@@ -30,6 +32,10 @@ function tireName() {
 
 function toogleFavorites() {
   tiresStore.toggleFavorites(tire)
+}
+
+function buyTire() {
+  tiresStore.tireAddCart(tire)
 }
 </script>
 
@@ -75,8 +81,17 @@ function toogleFavorites() {
           </div>
 
           <AppButton
+            v-if="!tiresStore.getTireInCartById(tire.id)"
             class="card-btn"
             label="Buy"
+            @click="buyTire"
+          />
+
+          <AppButton
+            v-else
+            class="card-btn"
+            label="In Cart"
+            @click="$router.push(ROUTES_PATHS.CART)"
           />
         </div>
       </div>
