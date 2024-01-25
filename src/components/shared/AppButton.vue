@@ -53,8 +53,8 @@ const clickOnButton = () => {
 
 .btn-icon
   padding: 0
-  width: 40px
-  height: 40px
+  min-width: 40px
+  min-height: 40px
   border: none
   border-radius: 50%
   background: transparent
