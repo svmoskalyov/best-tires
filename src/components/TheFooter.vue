@@ -7,7 +7,9 @@ import AppButton from './shared/AppButton.vue'
   <footer class="footer">
     <Container>
       <div class="footer-content">
-        <div class="footer-copyright">&copy; 2024 Serhii Moskalov</div>
+        <div class="footer-copyright">
+          <span> &copy; 2024 Serhii Moskalov </span>
+        </div>
         <div class="footer-link">
           <a
             href="https://www.linkedin.com/in/serhii-moskalov"
