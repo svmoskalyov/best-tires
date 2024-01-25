@@ -164,6 +164,8 @@ const tiresCart = tiresStore.cart
   align-items: flex-end
   gap: 60px
   padding: 30px
+  margin: auto
+  max-width: 620px
 
 .cart-pay
   padding-right: 60px
