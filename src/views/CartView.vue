@@ -56,9 +56,13 @@ const tiresCart = tiresStore.cart
               <div class="card-price-wrapper">
                 <span class="card-price">{{ tire.price }} &#8372;</span>
                 <div class="card-count-wrapper">
-                  <AppButton icon>-</AppButton>
+                  <AppButton icon>
+                    <font-awesome-icon :icon="['fas', 'minus']" />
+                  </AppButton>
                   <span class="card-count">1</span>
-                  <AppButton icon>+</AppButton>
+                  <AppButton icon>
+                    <font-awesome-icon :icon="['fas', 'plus']" />
+                  </AppButton>
                 </div>
                 <span class="card-sum">xxxxx &#8372;</span>
               </div>
@@ -94,16 +98,23 @@ const tiresCart = tiresStore.cart
   display: grid
   justify-items: center
   gap: 20px
-  outline: 1px dotted tomato
+  // outline: 1px dotted tomato
 
 .cart-item
   display: flex
   align-items: center
   padding: 10px
-  outline: 1px dotted green
+  border: 1px solid $border
+  border-radius: 7px
+  // outline: 1px dotted green
 
 .cart-card
   display: flex
+
+  @media screen and (max-width: 767px)
+    flex-wrap: wrap
+    justify-content: center
+    gap: 12px
 
 .img-wrapper
   width: 100px
@@ -123,8 +134,8 @@ const tiresCart = tiresStore.cart
   flex-direction: column
   align-items: center
   justify-content: center
-  gap: 4px
-  padding: 5px 20px
+  gap: 8px
+  padding: 4px 20px
 
 .card-name
   font-size: 18px
@@ -134,6 +145,10 @@ const tiresCart = tiresStore.cart
   display: flex
   align-items: center
   gap: 14px
+
+  @media screen and (max-width: 390px)
+    flex-wrap: wrap
+    justify-content: space-around
 
 .card-count-wrapper
   display: flex
