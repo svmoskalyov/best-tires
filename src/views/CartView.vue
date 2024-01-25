@@ -67,11 +67,11 @@ const tiresCart = tiresStore.cart
     </ul>
 
     <div class="cart-pay-wrapper">
-      <span class="cart-pay">To pay:</span>
-      <AppButton
-        class="cart-btn"
-        label="Placing an order"
-      />
+      <p class="cart-pay">
+        <span class="cart-pay-name">Total pay: </span>
+        <span> 12345 &#8372; </span>
+      </p>
+      <AppButton label="Placing an order" />
     </div>
   </div>
   <h2 v-else>Tires list is empty</h2>
@@ -95,7 +95,7 @@ const tiresCart = tiresStore.cart
   outline: 1px dotted tomato
 
 .cart-item
-  width: 500px
+  width: 620px
   outline: 1px dotted green
 
 .img-wrapper
@@ -118,7 +118,6 @@ const tiresCart = tiresStore.cart
   width: 30%
   height: 30%
 
-
 .card-info
   margin-bottom: 20px
 
@@ -135,11 +134,20 @@ const tiresCart = tiresStore.cart
 // .card-count-wrapper
 // .card-count
 // .card-sum
-// .cart-pay-wrapper
-// .cart-pay
-// .cart-btn
 
+.cart-pay-wrapper
+  display: flex
+  flex-direction: column
+  align-items: flex-end
+  gap: 60px
+  padding: 30px
 
+.cart-pay
+  padding-right: 60px
+  font-size: 18px
+
+.cart-pay-name
+  font-weight: 700
 
 .list-move, .list-enter-active, .list-leave-active
   transition: all 0.5s ease
