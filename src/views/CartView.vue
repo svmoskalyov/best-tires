@@ -22,44 +22,46 @@ const tiresCart = tiresStore.cart
             <font-awesome-icon :icon="['fas', 'xmark']" />
           </AppButton>
 
-          <div class="img-wrapper">
-            <img
-              v-if="tire.picture"
-              class="card-img"
-              loading="lazy"
-              width="100"
-              height="100"
-              alt="image tire"
-              :src="tire.picture"
-            />
-            <font-awesome-icon
-              v-else
-              class="card-img card-img-def"
-              :icon="['fas', 'image']"
-            />
-          </div>
+          <div class="cart-card">
+            <div class="img-wrapper">
+              <img
+                v-if="tire.picture"
+                class="card-img"
+                loading="lazy"
+                width="100"
+                height="100"
+                alt="image tire"
+                :src="tire.picture"
+              />
+              <font-awesome-icon
+                v-else
+                class="card-img card-img-def"
+                :icon="['fas', 'image']"
+              />
+            </div>
 
-          <div class="card-info">
-            <h2 class="card-name">
-              {{
-                tire.brand.toUpperCase() +
-                ' ' +
-                tire.width +
-                '/' +
-                tire.profile +
-                ' ' +
-                tire.diameter
-              }}
-            </h2>
+            <div class="card-info">
+              <h2 class="card-name">
+                {{
+                  tire.brand.toUpperCase() +
+                  ' ' +
+                  tire.width +
+                  '/' +
+                  tire.profile +
+                  ' ' +
+                  tire.diameter
+                }}
+              </h2>
 
-            <div class="card-price-wrapper">
-              <span class="card-price">{{ tire.price }} &#8372;</span>
-              <div class="card-count-wrapper">
-                <AppButton icon></AppButton>
-                <span class="card-count">count</span>
-                <AppButton icon></AppButton>
+              <div class="card-price-wrapper">
+                <span class="card-price">{{ tire.price }} &#8372;</span>
+                <div class="card-count-wrapper">
+                  <AppButton icon>-</AppButton>
+                  <span class="card-count">1</span>
+                  <AppButton icon>+</AppButton>
+                </div>
+                <span class="card-sum">xxxxx &#8372;</span>
               </div>
-              <span class="card-sum">sum</span>
             </div>
           </div>
         </li>
@@ -95,31 +97,34 @@ const tiresCart = tiresStore.cart
   outline: 1px dotted tomato
 
 .cart-item
-  width: 620px
+  display: flex
+  align-items: center
+  padding: 10px
   outline: 1px dotted green
 
-.img-wrapper
+.cart-card
   display: flex
-  justify-content: center
-  align-items: center
-  margin-bottom: 20px
+
+.img-wrapper
   width: 100px
   height: 100px
 
 .card-img
   width: 100%
   height: 100%
-  border-top-left-radius: 7px
-  border-top-right-radius: 7px
   background: $background
-  transition: all 0.2s ease
 
 .card-img-def
   width: 30%
   height: 30%
 
 .card-info
-  margin-bottom: 20px
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  gap: 4px
+  padding: 5px 20px
 
 .card-name
   font-size: 18px
@@ -127,11 +132,14 @@ const tiresCart = tiresStore.cart
 
 .card-price-wrapper
   display: flex
-  justify-content: space-between
   align-items: center
-  margin-bottom: 10px
+  gap: 14px
 
-// .card-count-wrapper
+.card-count-wrapper
+  display: flex
+  align-items: center
+  gap: 10px
+
 // .card-count
 // .card-sum
 
