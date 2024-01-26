@@ -81,6 +81,7 @@ export const useTiresStore = defineStore('tiresStore', () => {
   const favorites = ref([])
   const cart = ref([])
   const totalTiresInCart = ref(0)
+  const totalPayInCart = ref(0)
 
   const tiresInLocalStorage = localStorage.getItem('tires')
   if (tiresInLocalStorage) {
@@ -95,8 +96,7 @@ export const useTiresStore = defineStore('tiresStore', () => {
   const tiresCartInLocalStorage = localStorage.getItem('tiresCart')
   if (tiresCartInLocalStorage) {
     cart.value = JSON.parse(tiresCartInLocalStorage)
-    // sum1TiresInCart()
-    sum2TiresInCart()
+    sumTiresInCart()
   }
 
   const countTires = computed(() => tires.value.length)
@@ -127,11 +127,13 @@ export const useTiresStore = defineStore('tiresStore', () => {
   function tirePlusCount(id) {
     const idx = cart.value.findIndex(el => el.id === id)
     cart.value[idx].count++
+    sumTiresInCart()
   }
 
   function tireMinusCount(id) {
     const idx = cart.value.findIndex(el => el.id === id)
     cart.value[idx].count--
+    sumTiresInCart()
   }
 
   function getTireInCartById(id) {
@@ -140,19 +142,22 @@ export const useTiresStore = defineStore('tiresStore', () => {
 
   function tireDelCart(id) {
     cart.value = cart.value.filter(el => el.id !== id)
+    sumTiresInCart()
   }
 
-  function sum1TiresInCart() {
+  function sumTiresInCart() {
     totalTiresInCart.value = cart.value.reduce(
       (accum, item) => accum + item.count,
       0
     )
+    totalPayTiresInCart()
   }
 
-  function sum2TiresInCart() {
-    cart.value.forEach(el => {
-      totalTiresInCart.value += el.count
-    })
+  function totalPayTiresInCart() {
+    totalPayInCart.value = cart.value.reduce(
+      (accum, item) => accum + item.count * item.price,
+      0
+    )
   }
 
   watch(
@@ -188,6 +193,7 @@ export const useTiresStore = defineStore('tiresStore', () => {
     countTires,
     countFavorites,
     totalTiresInCart,
+    totalPayInCart,
     getTireById,
     getTireInCartById,
     toggleFavorites,
