@@ -3,22 +3,24 @@ import AppButton from '@/components/shared/AppButton.vue'
 import { useTiresStore } from '@/stores/tires'
 
 const tiresStore = useTiresStore()
-const tiresCart = tiresStore.cart
 </script>
 
 <template>
   <div
-    v-if="tiresCart.length > 0"
+    v-if="tiresStore.cart.length > 0"
     class="cart"
   >
     <ul class="cart-list">
       <TransitionGroup name="list">
         <li
-          v-for="tire of tiresCart"
+          v-for="tire of tiresStore.cart"
           :key="tire.id"
           class="cart-item"
         >
-          <AppButton icon>
+          <AppButton
+            icon
+            @click="tiresStore.tireDelCart(tire.id)"
+          >
             <font-awesome-icon :icon="['fas', 'xmark']" />
           </AppButton>
 
@@ -56,15 +58,23 @@ const tiresCart = tiresStore.cart
               <div class="card-price-wrapper">
                 <span class="card-price">{{ tire.price }} &#8372;</span>
                 <div class="card-count-wrapper">
-                  <AppButton icon>
+                  <AppButton
+                    icon
+                    @click="tiresStore.tireMinusCount(tire.id)"
+                  >
                     <font-awesome-icon :icon="['fas', 'minus']" />
                   </AppButton>
-                  <span class="card-count">1</span>
-                  <AppButton icon>
+                  <span class="card-count">{{ tire.count }}</span>
+                  <AppButton
+                    icon
+                    @click="tiresStore.tirePlusCount(tire.id)"
+                  >
                     <font-awesome-icon :icon="['fas', 'plus']" />
                   </AppButton>
                 </div>
-                <span class="card-sum">xxxxx &#8372;</span>
+                <span class="card-sum">
+                  {{ tire.price * tire.count }} &#8372;
+                </span>
               </div>
             </div>
           </div>
@@ -75,7 +85,7 @@ const tiresCart = tiresStore.cart
     <div class="cart-pay-wrapper">
       <p class="cart-pay">
         <span class="cart-pay-name">Total pay: </span>
-        <span> 12345 &#8372; </span>
+        <span> {{ tiresStore.totalPayInCart }} &#8372; </span>
       </p>
       <AppButton label="Placing an order" />
     </div>
@@ -98,7 +108,6 @@ const tiresCart = tiresStore.cart
   display: grid
   justify-items: center
   gap: 20px
-  // outline: 1px dotted tomato
 
 .cart-item
   display: flex
@@ -106,7 +115,6 @@ const tiresCart = tiresStore.cart
   padding: 10px
   border: 1px solid $border
   border-radius: 7px
-  // outline: 1px dotted green
 
 .cart-card
   display: flex
@@ -155,9 +163,6 @@ const tiresCart = tiresStore.cart
   align-items: center
   gap: 10px
 
-// .card-count
-// .card-sum
-
 .cart-pay-wrapper
   display: flex
   flex-direction: column
@@ -172,6 +177,7 @@ const tiresCart = tiresStore.cart
   font-size: 18px
 
 .cart-pay-name
+  padding-right: 8px
   font-weight: 700
 
 .list-move, .list-enter-active, .list-leave-active
