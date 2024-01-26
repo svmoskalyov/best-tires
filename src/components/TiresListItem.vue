@@ -35,9 +35,7 @@ function toogleFavorites() {
 }
 
 function buyTire() {
-  console.log('buy tire')
   tiresStore.tireAddCart(props.tire)
-  console.log(tiresStore.totalTiresInCart)
 }
 </script>
 
