@@ -31,7 +31,6 @@ onMounted(async () => {
 
 <template>
   <div class="tires">
-    <h2>This is an tires page</h2>
     <span v-if="showLoader">loading...</span>
 
     <TiresList :tires="tiresStore.tires" />
@@ -43,5 +42,4 @@ onMounted(async () => {
 .tires
   padding: 20px
   min-height: 100%
-  outline: 1px solid blue
 </style>
