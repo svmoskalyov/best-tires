@@ -1,8 +1,25 @@
 <script setup>
-import AppButton from '@/components/shared/AppButton.vue'
+import { computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { ROUTES_PATHS } from '@/constants/router'
 import { useTiresStore } from '@/stores/tires'
+import { useAuthStore } from '@/stores/auth'
+import AppButton from '@/components/shared/AppButton.vue'
 
+const router = useRouter()
+const authStore = useAuthStore()
 const tiresStore = useTiresStore()
+
+const token = computed(() => authStore.userInfo.token)
+
+function tiresBuy() {
+  if (token.value) {
+    tiresStore.sendTires()
+    router.push(ROUTES_PATHS.TIRES)
+  } else {
+    router.push(ROUTES_PATHS.SIGNIN)
+  }
+}
 </script>
 
 <template>
@@ -85,9 +102,14 @@ const tiresStore = useTiresStore()
     <div class="cart-pay-wrapper">
       <p class="cart-pay">
         <span class="cart-pay-name">Total pay: </span>
-        <span> {{ tiresStore.totalPayInCart }} &#8372; </span>
+        <span class="cart-pay-value">
+          {{ tiresStore.totalPayInCart }} &#8372;
+        </span>
       </p>
-      <AppButton label="Placing an order" />
+      <AppButton
+        label="Placing an order"
+        @click="tiresBuy()"
+      />
     </div>
   </div>
   <h2 v-else>Tires list is empty</h2>
@@ -99,15 +121,12 @@ const tiresStore = useTiresStore()
 .cart
   padding: 20px
   min-height: 100%
-  outline: 1px solid green
 
 .cart-list
-  // display: flex
-  // flex-direction: column
-  // align-items: center
   display: grid
   justify-items: center
   gap: 20px
+  margin-bottom: 30px
 
 .cart-item
   display: flex
@@ -152,29 +171,47 @@ const tiresStore = useTiresStore()
 .card-price-wrapper
   display: flex
   align-items: center
-  gap: 14px
+  justify-content: center
+  gap: 10px
 
-  @media screen and (max-width: 390px)
+  @media screen and (max-width: 447px)
     flex-wrap: wrap
     justify-content: space-around
+.card-price
+  width: 80px
+  text-align: right
 
 .card-count-wrapper
   display: flex
   align-items: center
   gap: 10px
+  width: 124px
+
+.card-count
+  width: 24px
+  text-align: center
+
+.card-sum
+  width: 80px
+
+  @media screen and (max-width: 447px)
+    text-align: right
 
 .cart-pay-wrapper
   display: flex
   flex-direction: column
   align-items: flex-end
   gap: 60px
-  padding: 30px
   margin: auto
   max-width: 620px
 
 .cart-pay
-  padding-right: 60px
+  width: 210px
+  margin-right: 60px
   font-size: 18px
+
+  @media screen and (max-width: 447px)
+    margin-right: 0
 
 .cart-pay-name
   padding-right: 8px
