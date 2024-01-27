@@ -1,13 +1,14 @@
 <script setup>
-import TiresList from '@/components/TiresList.vue'
+import { ref } from 'vue'
 import { useTiresStore } from '@/stores/tires'
+import TiresList from '@/components/TiresList.vue'
 
+const showLoader = ref(false)
 const tiresStore = useTiresStore()
 </script>
 
 <template>
   <div class="favorites">
-    <h2>favorites view</h2>
     <span v-if="showLoader">loading...</span>
 
     <TiresList :tires="tiresStore.favorites" />
