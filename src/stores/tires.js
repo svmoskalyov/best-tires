@@ -106,6 +106,16 @@ export const useTiresStore = defineStore('tiresStore', () => {
     return tires.value.find(el => el.id === id)
   }
 
+  function sendTires() {
+    const tiresPay = []
+    cart.value.map(el => {
+      tiresPay.push({ id: el.id, count: el.count })
+    })
+    console.log(tiresPay)
+    cart.value = []
+    sumTiresInCart()
+  }
+
   function toggleFavorites(obj) {
     const idx = tires.value.findIndex(el => el.id === obj.id)
     tires.value[idx].isFav = !tires.value[idx].isFav
@@ -132,7 +142,7 @@ export const useTiresStore = defineStore('tiresStore', () => {
 
   function tireMinusCount(id) {
     const idx = cart.value.findIndex(el => el.id === id)
-    cart.value[idx].count--
+    if (cart.value[idx].count > 1) cart.value[idx].count--
     sumTiresInCart()
   }
 
@@ -195,6 +205,7 @@ export const useTiresStore = defineStore('tiresStore', () => {
     totalTiresInCart,
     totalPayInCart,
     getTireById,
+    sendTires,
     getTireInCartById,
     toggleFavorites,
     tireAddCart,
