@@ -112,7 +112,12 @@ function tiresBuy() {
       />
     </div>
   </div>
-  <h2 v-else>Tires list is empty</h2>
+  <h2
+    v-else
+    class="empty"
+  >
+    Tires list is empty
+  </h2>
 </template>
 
 <style lang="sass" scoped>
@@ -216,6 +221,9 @@ function tiresBuy() {
 .cart-pay-name
   padding-right: 8px
   font-weight: 700
+
+.empty
+  text-align: center
 
 .list-move, .list-enter-active, .list-leave-active
   transition: all 0.5s ease
