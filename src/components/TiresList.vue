@@ -1,5 +1,6 @@
 <script setup>
 import TiresListItem from './TiresListItem.vue'
+import { useTiresStore } from '@/stores/tires'
 
 const props = defineProps({
   tires: {
@@ -8,6 +9,8 @@ const props = defineProps({
     default: () => []
   }
 })
+
+const tiresStore = useTiresStore()
 </script>
 
 <template>
@@ -23,10 +26,29 @@ const props = defineProps({
       />
     </TransitionGroup>
   </div>
-  <h2 v-else>Tires list is empty</h2>
+
+  <div
+    v-else-if="tiresStore.loader"
+    class="spinner"
+  >
+    <font-awesome-icon
+      :icon="['fas', 'spinner']"
+      spin-pulse
+      size="5x"
+    />
+  </div>
+  <h2
+    v-else
+    class="empty"
+  >
+    Tires list is empty
+  </h2>
 </template>
 
 <style lang="sass" scoped>
+.spinner, .empty
+  text-align: center
+
 .tires-list
   display: grid
   justify-items: center
