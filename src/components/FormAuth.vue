@@ -75,6 +75,7 @@ const submitForm = async () => {
   if (route?.redirectedFrom?.path) {
     router.push(route.redirectedFrom.path)
   } else {
+    if (route.path === ROUTES_PATHS.SIGNUP) router.go(-1)
     router.go(-1)
   }
 }
