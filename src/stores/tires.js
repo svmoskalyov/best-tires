@@ -1,87 +1,19 @@
 import { defineStore } from 'pinia'
 import { ref, computed, watch } from 'vue'
+import axiosApiInstance from '@/services/axios'
+import firebase from '@/services/firebase'
 
 export const useTiresStore = defineStore('tiresStore', () => {
   const error = ref('')
   const loader = ref(false)
-  const tires = ref([
-    {
-      id: '6576155d523850ad41fb941b',
-      brand: 'fulda',
-      type: 'SUV',
-      season: 'all-season',
-      diameter: 15,
-      width: 245,
-      profile: 70,
-      price: 2363,
-      picture:
-        'https://res.cloudinary.com/dganwbeyi/image/upload/v1702236930/tires/fuwfs9bildhrck46xwi8.png'
-    },
-    {
-      id: '6576155dbebc2f795a7abe19',
-      brand: 'nokian',
-      type: 'passenger car',
-      season: 'winter',
-      diameter: 17,
-      width: 205,
-      profile: 50,
-      price: 5727,
-      picture:
-        'https://res.cloudinary.com/dganwbeyi/image/upload/v1702236931/tires/golrpb8c1p3mpaxxmasa.png'
-    },
-    {
-      id: '6576155d23d4e3c079d0acbf',
-      brand: 'michelin',
-      type: 'passenger car',
-      season: 'all-season',
-      diameter: 16,
-      width: 225,
-      profile: 40,
-      price: 4772,
-      picture:
-        'https://res.cloudinary.com/dganwbeyi/image/upload/v1702236930/tires/fuwfs9bildhrck46xwi8.png'
-    },
-    {
-      id: '6576155d523850ad41fb941b',
-      brand: 'fulda',
-      type: 'SUV',
-      season: 'all-season',
-      diameter: 15,
-      width: 245,
-      profile: 70,
-      price: 2363,
-      picture:
-        'https://res.cloudinary.com/dganwbeyi/image/upload/v1702236930/tires/fuwfs9bildhrck46xwi8.png'
-    },
-    {
-      id: '6576155dbebc2f795a7abe19',
-      brand: 'nokian',
-      type: 'passenger car',
-      season: 'winter',
-      diameter: 17,
-      width: 205,
-      profile: 50,
-      price: 5727,
-      picture:
-        'https://res.cloudinary.com/dganwbeyi/image/upload/v1702236931/tires/golrpb8c1p3mpaxxmasa.png'
-    },
-    {
-      id: '6576155d23d4e3c079d0acbf',
-      brand: 'michelin',
-      type: 'passenger car',
-      season: 'all-season',
-      diameter: 16,
-      width: 225,
-      profile: 40,
-      price: 4772,
-      picture:
-        'https://res.cloudinary.com/dganwbeyi/image/upload/v1702236930/tires/fuwfs9bildhrck46xwi8.png'
-    }
-  ])
+  const tires = ref([])
   const favorites = ref([])
   const cart = ref([])
   const totalTiresInCart = ref(0)
   const totalPayInCart = ref(0)
+
+  const countTires = computed(() => tires.value.length)
+  const countFavorites = computed(() => favorites.value.length)
 
   const tiresInLocalStorage = localStorage.getItem('tires')
   if (tiresInLocalStorage) {
@@ -96,11 +28,24 @@ export const useTiresStore = defineStore('tiresStore', () => {
   const tiresCartInLocalStorage = localStorage.getItem('tiresCart')
   if (tiresCartInLocalStorage) {
     cart.value = JSON.parse(tiresCartInLocalStorage)
-    sumTiresInCart()
+    if (cart.value.length > 0) {
+      sumTiresInCart()
+    }
   }
 
-  const countTires = computed(() => tires.value.length)
-  const countFavorites = computed(() => favorites.value.length)
+  const getAllTires = async () => {
+    loader.value = true
+    try {
+      const response = await axiosApiInstance.get(
+        `${firebase.databaseURL}/tires.json`
+      )
+      tires.value = response.data
+    } catch (err) {
+      console.log(err.response)
+    } finally {
+      loader.value = false
+    }
+  }
 
   function getTireById(id) {
     return tires.value.find(el => el.id === id)
@@ -132,6 +77,7 @@ export const useTiresStore = defineStore('tiresStore', () => {
     tires.value[idx].count = 1
     totalTiresInCart.value += 1
     cart.value.push(obj)
+    sumTiresInCart()
   }
 
   function tirePlusCount(id) {
@@ -204,6 +150,7 @@ export const useTiresStore = defineStore('tiresStore', () => {
     countFavorites,
     totalTiresInCart,
     totalPayInCart,
+    getAllTires,
     getTireById,
     sendTires,
     getTireInCartById,
