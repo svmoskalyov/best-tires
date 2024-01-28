@@ -44,6 +44,7 @@ function goTires() {
   background-repeat: no-repeat
   background-size: cover
   background-position: center
+  box-shadow: 0px 0px 20px 20px rgba(0,0,0,1) inset
 
 .home-svg
   width: 100%
