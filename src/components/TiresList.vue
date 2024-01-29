@@ -1,6 +1,6 @@
 <script setup>
-import TiresListItem from './TiresListItem.vue'
 import { useTiresStore } from '@/stores/tires'
+import TiresListItem from './TiresListItem.vue'
 
 const props = defineProps({
   tires: {
