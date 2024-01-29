@@ -3,7 +3,8 @@ import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { ROUTES_PATHS } from '@/constants/router'
 import { useAuthStore } from '@/stores/auth'
-import { useTiresStore } from '@/stores/tires'
+import { useFavoritesStore } from '@/stores/favorites'
+import { useCartStore } from '@/stores/cart'
 
 import AppButton from './shared/AppButton.vue'
 import AppModal from './shared/AppModal.vue'
@@ -11,9 +12,9 @@ import FormAuth from './FormAuth.vue'
 
 const router = useRouter()
 const authStore = useAuthStore()
-const tiresStore = useTiresStore()
+const favoritesStore = useFavoritesStore()
+const cartStore = useCartStore()
 const showModal = ref(false)
-const cartCount = false
 const auth = false
 
 const token = computed(() => authStore.userInfo.token)
@@ -29,12 +30,12 @@ function signOut() {
     <div class="favorites">
       <AppButton
         icon
-        :disabled="tiresStore.countFavorites === 0"
+        :disabled="favoritesStore.countFavorites === 0"
         @click="$router.push(ROUTES_PATHS.FAVORITES)"
       >
         <font-awesome-icon
           :icon="['fas', 'heart']"
-          :class="{ 'favorites-icon': tiresStore.countFavorites > 0 }"
+          :class="{ 'favorites-icon': favoritesStore.countFavorites > 0 }"
         />
       </AppButton>
 
@@ -42,22 +43,22 @@ function signOut() {
         :class="[
           'count',
           'favorites-count',
-          { 'count-disabled': tiresStore.countFavorites === 0 }
+          { 'count-disabled': favoritesStore.countFavorites === 0 }
         ]"
       >
-        {{ tiresStore.countFavorites }}
+        {{ favoritesStore.countFavorites }}
       </span>
     </div>
 
     <div class="cart">
       <AppButton
         icon
-        :disabled="tiresStore.totalTiresInCart === 0"
+        :disabled="cartStore.totalTiresInCart === 0"
         @click="$router.push(ROUTES_PATHS.CART)"
       >
         <font-awesome-icon
           :icon="['fas', 'cart-shopping']"
-          :class="{ 'cart-icon': tiresStore.totalTiresInCart > 0 }"
+          :class="{ 'cart-icon': cartStore.totalTiresInCart > 0 }"
         />
       </AppButton>
 
@@ -65,10 +66,10 @@ function signOut() {
         :class="[
           'count',
           'cart-count',
-          { 'count-disabled': tiresStore.totalTiresInCart === 0 }
+          { 'count-disabled': cartStore.totalTiresInCart === 0 }
         ]"
       >
-        {{ tiresStore.totalTiresInCart }}
+        {{ cartStore.totalTiresInCart }}
       </span>
     </div>
 
