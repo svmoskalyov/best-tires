@@ -2,19 +2,19 @@
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { ROUTES_PATHS } from '@/constants/router'
-import { useTiresStore } from '@/stores/tires'
 import { useAuthStore } from '@/stores/auth'
+import { useCartStore } from '@/stores/cart'
 import AppButton from '@/components/shared/AppButton.vue'
 
 const router = useRouter()
 const authStore = useAuthStore()
-const tiresStore = useTiresStore()
+const cartStore = useCartStore()
 
 const token = computed(() => authStore.userInfo.token)
 
 function tiresBuy() {
   if (token.value) {
-    tiresStore.sendTires()
+    cartStore.sendTires()
     router.push(ROUTES_PATHS.TIRES)
   } else {
     router.push(ROUTES_PATHS.SIGNIN)
@@ -24,19 +24,19 @@ function tiresBuy() {
 
 <template>
   <div
-    v-if="tiresStore.cart.length > 0"
+    v-if="cartStore.cart.length > 0"
     class="cart"
   >
     <ul class="cart-list">
       <TransitionGroup name="list">
         <li
-          v-for="tire of tiresStore.cart"
+          v-for="tire of cartStore.cart"
           :key="tire.id"
           class="cart-item"
         >
           <AppButton
             icon
-            @click="tiresStore.tireDelCart(tire.id)"
+            @click="cartStore.tireDelCart(tire.id)"
           >
             <font-awesome-icon :icon="['fas', 'xmark']" />
           </AppButton>
@@ -77,14 +77,14 @@ function tiresBuy() {
                 <div class="card-count-wrapper">
                   <AppButton
                     icon
-                    @click="tiresStore.tireMinusCount(tire.id)"
+                    @click="cartStore.tireMinusCount(tire.id)"
                   >
                     <font-awesome-icon :icon="['fas', 'minus']" />
                   </AppButton>
                   <span class="card-count">{{ tire.count }}</span>
                   <AppButton
                     icon
-                    @click="tiresStore.tirePlusCount(tire.id)"
+                    @click="cartStore.tirePlusCount(tire.id)"
                   >
                     <font-awesome-icon :icon="['fas', 'plus']" />
                   </AppButton>
@@ -103,7 +103,7 @@ function tiresBuy() {
       <p class="cart-pay">
         <span class="cart-pay-name">Total pay: </span>
         <span class="cart-pay-value">
-          {{ tiresStore.totalPayInCart }} &#8372;
+          {{ cartStore.totalPayInCart }} &#8372;
         </span>
       </p>
       <AppButton
