@@ -1,13 +1,13 @@
 <script setup>
-import { useTiresStore } from '@/stores/tires'
+import { useFavoritesStore } from '@/stores/favorites'
 import TiresList from '@/components/TiresList.vue'
 
-const tiresStore = useTiresStore()
+const favoritesStore = useFavoritesStore()
 </script>
 
 <template>
   <div class="favorites">
-    <TiresList :tires="tiresStore.favorites" />
+    <TiresList :tires="favoritesStore.favorites" />
   </div>
 </template>
 
