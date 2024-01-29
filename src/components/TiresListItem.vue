@@ -1,11 +1,11 @@
 <script setup>
 import { ref } from 'vue'
+import { ROUTES_PATHS } from '@/constants/router'
+import { useFavoritesStore } from '@/stores/favorites'
+import { useCartStore } from '@/stores/cart'
 import AppButton from './shared/AppButton.vue'
 import AppInfoList from './shared/AppInfoList.vue'
-import { useTiresStore } from '@/stores/tires'
-import { ROUTES_PATHS } from '@/constants/router'
 
-const tiresStore = useTiresStore()
 const props = defineProps({
   tire: {
     type: Object,
@@ -13,6 +13,9 @@ const props = defineProps({
     default: () => {}
   }
 })
+
+const favoritesStore = useFavoritesStore()
+const cartStore = useCartStore()
 
 const infoList = ref([
   {
@@ -31,11 +34,11 @@ function tireName() {
 }
 
 function toogleFavorites() {
-  tiresStore.toggleFavorites(props.tire)
+  favoritesStore.toggleFavorites(props.tire)
 }
 
 function buyTire() {
-  tiresStore.tireAddCart(props.tire)
+  cartStore.tireAddCart(props.tire)
 }
 </script>
 
@@ -74,7 +77,7 @@ function buyTire() {
       </div>
 
       <AppButton
-        v-if="!tiresStore.getTireInCartById(tire.id)"
+        v-if="!cartStore.getTireInCartById(tire.id)"
         class="card-btn"
         label="Buy"
         @click="buyTire"
