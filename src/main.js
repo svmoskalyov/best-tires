@@ -1,13 +1,12 @@
-import './assets/styles/main.sass'
-
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import Notifications from '@kyvg/vue3-notification'
 import { initializeApp } from 'firebase/app'
 import firebaseConfig from './services/firebase'
 import '@/services/axios'
-
 import App from './App.vue'
 import router from './router'
+import './assets/styles/main.sass'
 
 initializeApp(firebaseConfig)
 
@@ -57,5 +56,6 @@ library.add([
 
 app.use(router)
 app.use(createPinia())
+app.use(Notifications)
 app.component('font-awesome-icon', FontAwesomeIcon)
 app.mount('#app')
