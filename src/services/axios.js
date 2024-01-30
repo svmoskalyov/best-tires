@@ -36,7 +36,6 @@ axiosApiInstance.interceptors.response.use(
               .refreshToken
           }
         )
-        // console.log('newToken', newTokens.data)
         authStore.userInfo.token = newTokens.data.access_token
         authStore.userInfo.refreshToken = newTokens.data.refresh_token
         localStorage.setItem(
@@ -47,14 +46,13 @@ axiosApiInstance.interceptors.response.use(
           })
         )
       } catch (err) {
-        console.log(err)
         localStorage.removeItem('userTokens')
         router.push(ROUTES_PATHS.SIGNIN)
         authStore.userInfo.token = ''
         authStore.userInfo.refreshToken = ''
       }
     }
-    console.log(error)
+    return Promise.reject(error)
   }
 )
 
