@@ -20,6 +20,7 @@ checkUser()
 
 <template>
   <div class="app">
+    <notifications />
     <Header />
     <main>
       <Container>
