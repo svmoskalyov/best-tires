@@ -1,5 +1,6 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
+import { notify } from '@kyvg/vue3-notification'
 import firebase from '@/services/firebase'
 import axiosApiInstance from '@/services/axios'
 
@@ -41,31 +42,39 @@ export const useAuthStore = defineStore('auth', () => {
           refreshToken: userInfo.value.refreshToken
         })
       )
-      // console.log(response.data)
+
+      notify({
+        title: 'Welcome!',
+        text: response.data.email,
+        type: 'success'
+      })
     } catch (err) {
       switch (err.response.data.error.message) {
         case 'EMAIL_EXISTS':
           error.value = 'Email exists'
-          console.log(error.value)
           break
         case 'OPERATION_NOT_ALLOWED':
           error.value = 'Operation not allowed'
-          console.log(error.value)
           break
         case 'EMAIL_NOT_FOUND':
           error.value = 'Email not found'
-          console.log(error.value)
           break
         case 'INVALID_PASSWORD':
           error.value = 'Invalid password'
-          console.log(error.value)
+          break
+        case 'INVALID_LOGIN_CREDENTIALS':
+          error.value = 'Invalid login credentials'
           break
         default:
-          error.value = 'Error'
-          console.log(error.value)
+          error.value = 'Undetected error'
           break
       }
-      throw error.value
+
+      notify({
+        title: 'ERROR',
+        text: error.value,
+        type: 'error'
+      })
     } finally {
       loader.value = false
     }
