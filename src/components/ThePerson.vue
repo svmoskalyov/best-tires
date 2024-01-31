@@ -7,15 +7,11 @@ import { useFavoritesStore } from '@/stores/favorites'
 import { useCartStore } from '@/stores/cart'
 
 import AppButton from './shared/AppButton.vue'
-import AppModal from './shared/AppModal.vue'
-import FormAuth from './FormAuth.vue'
 
 const router = useRouter()
 const authStore = useAuthStore()
 const favoritesStore = useFavoritesStore()
 const cartStore = useCartStore()
-const showModal = ref(false)
-const auth = false
 
 const token = computed(() => authStore.userInfo.token)
 
@@ -74,12 +70,6 @@ function signOut() {
     </div>
 
     <div class="auth-actions">
-      <!-- <AppButton
-        v-if="!auth"
-        icon
-        @click="showModal = true"
-      > -->
-
       <AppButton
         v-if="!token"
         icon
@@ -96,21 +86,6 @@ function signOut() {
       </AppButton>
     </div>
   </div>
-
-  <!-- <Teleport to="body">
-    <AppModal
-      :show="showModal"
-      @close="showModal = false"
-    > -->
-
-  <!-- <FormAuth
-        title="Create an account"
-        lable-btn="Sign up"
-        @submit="showModal = false"
-      /> -->
-
-  <!-- </AppModal>
-  </Teleport> -->
 </template>
 
 <style lang="sass" scoped>

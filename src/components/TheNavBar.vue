@@ -1,10 +1,5 @@
 <script setup>
-// import { computed } from 'vue'
-// import { useAuthStore } from '@/stores/auth'
 import { ROUTES_PATHS } from '@/constants/router'
-
-// const authStore = useAuthStore()
-// const token = computed(() => authStore.userInfo.token)
 </script>
 
 <template>

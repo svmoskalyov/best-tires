@@ -9,9 +9,7 @@
 <style lang="sass" scoped>
 
 .container
-  // max-width: 1920px
-  // max-height: 1080px
-  max-width: 1024px
+  max-width: 1920px
   height: 100%
   margin: 0 auto
 </style>

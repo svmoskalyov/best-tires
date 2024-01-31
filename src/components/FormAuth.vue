@@ -9,7 +9,6 @@ import { ROUTES_PATHS } from '@/constants/router'
 
 import AppInput from './shared/AppInput.vue'
 import AppButton from './shared/AppButton.vue'
-import AppModal from './shared/AppModal.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -25,16 +24,12 @@ const props = defineProps({
     default: 'Submit'
   }
 })
-// const showModal = ref(true)
+
 const form = ref({
   emailField: '',
   passwordField: '',
   passwordVisible: false
 })
-
-// function closeModal() {
-//   emit('submit')
-// }
 
 const rules = computed(() => ({
   emailField: {
@@ -71,7 +66,7 @@ const submitForm = async () => {
 
   v$.value.$reset()
   form.value = form
-  // closeModal()
+
   if (route?.redirectedFrom?.path) {
     router.push(route.redirectedFrom.path)
   } else {
@@ -82,21 +77,10 @@ const submitForm = async () => {
 </script>
 
 <template>
-  <!-- <Teleport to="body">
-    <AppModal
-      :show="showModal"
-      @close="showModal = false"
-    > -->
-
   <form
     class="form"
     @submit.prevent="submitForm"
   >
-    <!-- <div v-if="authStore.loader">Loading...</div>
-    <div v-else>{{ authStore.error }}</div> -->
-    <!-- <div v-if="authStore.error">{{ authStore.error }}</div> -->
-
-    <!-- <h2 class="form-title">Create an account</h2> -->
     <h2 class="form-title">{{ title }}</h2>
 
     <AppInput
@@ -106,6 +90,7 @@ const submitForm = async () => {
       placeholder="Input your email"
       :error="v$.emailField.$errors"
       width=""
+      autocomplete="off"
     />
 
     <AppInput
@@ -164,9 +149,6 @@ const submitForm = async () => {
       </RouterLink>
     </span>
   </form>
-
-  <!-- </AppModal>
-  </Teleport> -->
 </template>
 
 <style lang="sass" scoped>
