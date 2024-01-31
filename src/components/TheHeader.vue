@@ -21,6 +21,10 @@ import Container from './shared/AppContainer.vue'
 @import '../assets/styles/main'
 
 .header
+  position: sticky
+  z-index: 1100
+  top: 0
+  left: 0
   grid-area: header
 
 .header-content
