@@ -29,6 +29,10 @@ import AppButton from './shared/AppButton.vue'
 @import '../assets/styles/main'
 
 .footer
+  position: sticky
+  z-index: 1100
+  bottom: 0
+  left: 0
   grid-area: footer
   padding: 0 20px
 
