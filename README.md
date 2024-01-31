@@ -6,6 +6,6 @@ Only basic things have been done, there are no limits to imagination, so you can
 And it is better when you do according to the technical task and layout 🙂
 
 ### 🧰 Technologies stack 
-Vue 3, Vue Router, Pinia, HTML5, SASS, JavaScript, Firebase Database, Firebase Auth, Axios, Font Awesome, Vue Notification, Vuelidate, Vite, Prettier, ESLint.
+Vue 3, Vue Router, Pinia, HTML5, SASS, JavaScript, Firebase Database, Firebase Auth, JWT, Axios, Font Awesome, Vue Notification, Vuelidate, Vite, Prettier, ESLint.
 
 https://github.com/svmoskalyov/best-tires/assets/107481840/cd0ffeb5-4855-411c-adc1-45f5f6b9e955
