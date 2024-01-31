@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, watch } from 'vue'
+import { notify } from '@kyvg/vue3-notification'
 import { useTiresStore } from '@/stores/tires'
 
 export const useCartStore = defineStore('cartStore', () => {
@@ -20,6 +21,13 @@ export const useCartStore = defineStore('cartStore', () => {
     cart.value.map(el => {
       tiresPay.push({ id: el.id, count: el.count })
     })
+
+    notify({
+      title: 'Cart',
+      text: 'Your tires sended',
+      type: 'success'
+    })
+
     console.log(tiresPay)
     cart.value = []
     sumTiresInCart()
